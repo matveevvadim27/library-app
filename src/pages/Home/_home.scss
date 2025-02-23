@@ -1,0 +1,14 @@
+@use "../../styles/helpers/" as *;
+
+.home {
+  padding: rem(40) 0;
+  text-align: center;
+  gap: rem(50);
+
+  &__section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: rem(30);
+  }
+}

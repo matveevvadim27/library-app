@@ -1,0 +1,19 @@
+@use "../../styles/helpers/" as *;
+
+.books {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: rem(40);
+  }
+
+  &__title {
+    text-align: start;
+  }
+  &__list {
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: rem(30);
+  }
+}

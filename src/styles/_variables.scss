@@ -1,0 +1,21 @@
+@use "./helpers/" as *;
+
+:root {
+  --color-white: #fff;
+  --color-base: #3b3a3a;
+  --color-links: #6f4894;
+  --color-border: #8c8692;
+  --color-login: #4a61e9;
+  --color-delete: #e95050;
+  --colot-author: #3b3a3a99;
+
+  --ff-base: "Roboto";
+
+  --fw-400: 400;
+  --fw-600: 600;
+  --fw-800: 800;
+
+  --lh-12: 1.2;
+
+  --td: 0.2s;
+}

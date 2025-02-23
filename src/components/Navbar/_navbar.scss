@@ -1,0 +1,22 @@
+@use "../../styles/helpers/" as *;
+
+.nav {
+  @include fluid-text(18, 16);
+
+  &__list {
+    display: flex;
+    gap: rem(30);
+
+    @include tablet-s {
+      flex-direction: column;
+      font-size: rem(18);
+    }
+  }
+
+  &__link {
+    &:hover {
+      color: var(--color-links);
+      transition-duration: var(--td);
+    }
+  }
+}

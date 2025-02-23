@@ -1,0 +1,80 @@
+@use "./functions" as *;
+
+$laptop-xxl: 1400.98;
+$laptop-xl: 1200.98;
+$tablet: 992.98;
+$tablet-s: 768.98;
+$mobile: 576.98;
+$mobile-s: 390.98;
+
+@mixin laptop-xxl {
+  @media (width > rem($laptop-xxl)) {
+    @content;
+  }
+}
+
+@mixin laptop-xl-above {
+  @media (width > rem($laptop-xl)) {
+    @content;
+  }
+}
+@mixin laptop-xl {
+  @media (width <= rem($laptop-xl)) {
+    @content;
+  }
+}
+@mixin tablet-above {
+  @media (width > rem($tablet)) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (width <= rem($tablet)) {
+    @content;
+  }
+}
+@mixin tablet-s-above {
+  @media (width > rem($tablet-s)) {
+    @content;
+  }
+}
+@mixin tablet-s {
+  @media (width <= rem($tablet-s)) {
+    @content;
+  }
+}
+@mixin mobile-above {
+  @media (width > rem($mobile)) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (width <= rem($mobile)) {
+    @content;
+  }
+}
+@mixin mobile-s-above {
+  @media (width > rem($mobile-s)) {
+    @content;
+  }
+}
+@mixin mobile-s {
+  @media (width <= rem($mobile-s)) {
+    @content;
+  }
+}
+@mixin hover($hasActiveEffectOnMobile: true) {
+  @media (any-hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  @if ($hasActiveEffectOnMobile) {
+    @media (any-hover: none) {
+      &:active {
+        @content;
+      }
+    }
+  }
+}
