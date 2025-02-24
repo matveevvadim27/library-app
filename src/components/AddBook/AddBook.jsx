@@ -39,6 +39,8 @@ export default function AddBook() {
           className="edit__input"
           type="text"
           value={title}
+          title="Разрешены только буквы и числа!"
+          pattern="[A-Za-zА-Яа-яЁё0-9\s]+"
           onChange={(e) => setTitle(e.target.value)}
         />
       </label>
@@ -49,6 +51,8 @@ export default function AddBook() {
           className="edit__input"
           type="text"
           value={author}
+          title="Разрешены только буквы и числа!"
+          pattern="[A-Za-zА-Яа-яЁё0-9\s]+"
           onChange={(e) => setAuthor(e.target.value)}
         />
       </label>
@@ -59,6 +63,8 @@ export default function AddBook() {
           className="edit__input"
           type="text"
           value={publisher}
+          pattern="[A-Za-zА-Яа-яЁё0-9\s]+"
+          title="Разрешены только буквы и числа!"
           onChange={(e) => setPublisher(e.target.value)}
         />
       </label>
@@ -68,6 +74,8 @@ export default function AddBook() {
           className="edit__input"
           type="text"
           value={genre}
+          title="Разрешены только буквы и числа!"
+          pattern="[A-Za-zА-Яа-яЁё0-9\s]+"
           onChange={(e) => setGenre(e.target.value)}
         />
       </label>

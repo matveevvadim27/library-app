@@ -13,42 +13,4 @@
   &__title {
     text-align: center;
   }
-
-  &__form {
-    border: rem(1) solid var(--color-border);
-    border-radius: rem(10);
-    padding: rem(20);
-    min-width: fluid(500, 200);
-    display: flex;
-    flex-direction: column;
-    gap: rem(20);
-  }
-
-  &__label {
-    @include fluid-text(20, 16);
-    font-weight: var(--fw-600);
-    display: flex;
-    flex-direction: column;
-    gap: rem(10);
-  }
-  &__input {
-    width: 100%;
-    padding: rem(10);
-    border-radius: rem(10);
-
-    &:focus {
-      outline: 3px solid var(--color-login);
-      border: none;
-    }
-  }
-
-  &__button {
-    @include fluid-text(20, 16);
-    font-weight: var(--fw-600);
-    padding: rem(15) rem(20);
-    color: var(--color-white);
-    background-color: var(--color-login);
-    border: none;
-    border-radius: rem(10);
-  }
 }

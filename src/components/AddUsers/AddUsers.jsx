@@ -41,6 +41,9 @@ export default function AddUsers({ addUser, users }) {
           type="text"
           placeholder="Имя"
           value={newUser.name}
+          maxLength={12}
+          pattern="[A-Za-zА-Яа-яЁё0-9]+"
+          title="Имя может содержать только буквы и числа!"
           onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
         />
       </label>
@@ -51,6 +54,10 @@ export default function AddUsers({ addUser, users }) {
           type="password"
           placeholder="Пароль"
           value={newUser.password}
+          minLength={3}
+          maxLength={12}
+          pattern="[A-Za-z0-9]+"
+          title="Пароль может содержать только латинские буквы и цифры!"
           onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
         />
       </label>

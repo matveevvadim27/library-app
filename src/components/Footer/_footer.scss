@@ -4,6 +4,6 @@
   @include fluid-text(18, 16);
   font-weight: var(--fw-600);
   padding: rem(20);
-  background-color: rgb(166, 160, 240);
+  background-color: var(--color-footer);
   text-align: center;
 }

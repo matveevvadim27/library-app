@@ -38,6 +38,9 @@ export default function RegisterPage() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              maxLength={12}
+              pattern="[A-Za-zА-Яа-яЁё0-9]+"
+              title="Имя может содержать только буквы и числа!"
               required
             />
           </label>
@@ -48,6 +51,10 @@ export default function RegisterPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              minLength={3}
+              maxLength={12}
+              pattern="[A-Za-z0-9]+"
+              title="Пароль может содержать только латинские буквы и цифры!"
               required
             />
           </label>

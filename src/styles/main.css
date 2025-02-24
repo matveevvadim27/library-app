@@ -166,6 +166,8 @@ svg * {
   --color-login: #4a61e9;
   --color-delete: #e95050;
   --colot-author: #3b3a3a99;
+  --color-header: rgb(183, 200, 236);
+  --color-footer: rgb(166, 160, 240);
   --ff-base: "Roboto";
   --fw-400: 400;
   --fw-600: 600;
@@ -212,6 +214,9 @@ svg * {
   }
 }
 
+html {
+  overflow-x: hidden;
+}
 html.is-lock {
   overflow: hidden;
 }
@@ -400,40 +405,6 @@ svg * {
 .edit__title {
   text-align: center;
 }
-.edit__form {
-  border: 0.0625rem solid var(--color-border);
-  border-radius: 0.625rem;
-  padding: 1.25rem;
-  min-width: clamp(12.5rem, 5.46875rem + 28.8461538462vw, 31.25rem);
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-.edit__label {
-  font-size: clamp(1rem, 0.90625rem + 0.3846153846vw, 1.25rem);
-  font-weight: var(--fw-600);
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-}
-.edit__input {
-  width: 100%;
-  padding: 0.625rem;
-  border-radius: 0.625rem;
-}
-.edit__input:focus {
-  outline: 3px solid var(--color-login);
-  border: none;
-}
-.edit__button {
-  font-size: clamp(1rem, 0.90625rem + 0.3846153846vw, 1.25rem);
-  font-weight: var(--fw-600);
-  padding: 0.9375rem 1.25rem;
-  color: var(--color-white);
-  background-color: var(--color-login);
-  border: none;
-  border-radius: 0.625rem;
-}
 
 .login {
   padding: 2.5rem 0;
@@ -470,6 +441,8 @@ svg * {
   width: 100%;
   padding: 0.625rem;
   border-radius: 0.625rem;
+  border: none;
+  outline: 0.0625rem solid var(--color-base);
 }
 .login__input:focus {
   outline: 3px solid var(--color-login);
@@ -529,6 +502,8 @@ svg * {
   width: 100%;
   padding: 0.625rem;
   border-radius: 0.625rem;
+  border: none;
+  outline: 0.0625rem solid var(--color-base);
 }
 .auth__input:focus {
   outline: 3px solid var(--color-login);
@@ -554,7 +529,7 @@ svg * {
 }
 
 .header {
-  background-color: rgb(183, 200, 236);
+  background-color: var(--color-header);
   padding: 0 0.625rem;
 }
 .header__container {
@@ -702,7 +677,7 @@ svg * {
   font-size: clamp(1rem, 0.953125rem + 0.1923076923vw, 1.125rem);
   font-weight: var(--fw-600);
   padding: 1.25rem;
-  background-color: rgb(166, 160, 240);
+  background-color: var(--color-footer);
   text-align: center;
 }
 
@@ -771,6 +746,8 @@ svg * {
   width: 100%;
   padding: 0.625rem;
   border-radius: 0.625rem;
+  border: none;
+  outline: 0.0625rem solid var(--color-base);
 }
 .add__input:focus {
   outline: 3px solid var(--color-login);
@@ -824,6 +801,8 @@ svg * {
   width: 100%;
   padding: 0.625rem;
   border-radius: 0.625rem;
+  border: none;
+  outline: 0.0625rem solid var(--color-base);
 }
 .change__input:focus {
   outline: 3px solid var(--color-login);
@@ -898,5 +877,42 @@ svg * {
   border: none;
   color: var(--color-white);
   padding: 0.9375rem 1.25rem;
+  border-radius: 0.625rem;
+}
+
+.edit__form {
+  border: 0.0625rem solid var(--color-border);
+  border-radius: 0.625rem;
+  padding: 1.25rem;
+  min-width: clamp(12.5rem, 5.46875rem + 28.8461538462vw, 31.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.edit__label {
+  font-size: clamp(1rem, 0.90625rem + 0.3846153846vw, 1.25rem);
+  font-weight: var(--fw-600);
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.edit__input {
+  width: 100%;
+  padding: 0.625rem;
+  border-radius: 0.625rem;
+  border: none;
+  outline: 0.0625rem solid var(--color-base);
+}
+.edit__input:focus {
+  outline: 3px solid var(--color-login);
+  border: none;
+}
+.edit__button {
+  font-size: clamp(1rem, 0.90625rem + 0.3846153846vw, 1.25rem);
+  font-weight: var(--fw-600);
+  padding: 0.9375rem 1.25rem;
+  color: var(--color-white);
+  background-color: var(--color-login);
+  border: none;
   border-radius: 0.625rem;
 }/*# sourceMappingURL=main.css.map */
