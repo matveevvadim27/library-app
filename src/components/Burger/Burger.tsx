@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 
-export default function Burger({ isActive, onClick }) {
+interface BurgerProps {
+  isActive: boolean;
+  onClick: () => void;
+}
+
+export default function Burger({ isActive, onClick }: BurgerProps) {
   useEffect(() => {
     if (isActive) {
       document.documentElement.classList.add("is-lock");

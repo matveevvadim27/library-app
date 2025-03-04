@@ -1,35 +1,7 @@
-import { useState } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../../context/AuthContext";
 
-export default function AddUsers({ addUser, users }) {
-  const [newUser, setNewUser] = useState({
-    name: "",
-    password: "",
-    role: "client",
-  });
-
-  const handleAddUser = (e) => {
-    e.preventDefault();
-    if (!newUser.name || !newUser.password) {
-      toast.error("Укажите имя и пароль!");
-      return;
-    }
-
-    const userExists = users.some((user) => user.name === newUser.name);
-    if (userExists) {
-      toast.error("Пользователь с таким именем уже существует!");
-      return;
-    }
-
-    addUser(newUser.name, newUser.password, newUser.role);
-    setNewUser({
-      name: "",
-      password: "",
-      role: "client",
-    });
-    toast.success("Пользователь успешно добавлен!");
-  };
+export default function AddUsers() {
+  const { newUser, setNewUser, handleAddUser } = useAuth();
 
   return (
     <form onSubmit={handleAddUser} className="add">
