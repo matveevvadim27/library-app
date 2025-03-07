@@ -6,6 +6,7 @@ import Client from "../pages/Client/Client";
 import Edit from "../pages/Edit/Edit";
 import Admin from "../pages/Admin/Admin";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import { UserRole } from "../constants/UserRoles";
 
 export default function AppRoutes() {
   return (
@@ -14,7 +15,9 @@ export default function AppRoutes() {
       <Route
         path="/client"
         element={
-          <PrivateRoute allowedRoles={["client", "librarian", "admin"]}>
+          <PrivateRoute
+            allowedRoles={[UserRole.Client, UserRole.Librarian, UserRole.Admin]}
+          >
             <Client />
           </PrivateRoute>
         }
@@ -22,7 +25,7 @@ export default function AppRoutes() {
       <Route
         path="/edit"
         element={
-          <PrivateRoute allowedRoles={["librarian", "admin"]}>
+          <PrivateRoute allowedRoles={[UserRole.Librarian, UserRole.Admin]}>
             <Edit />
           </PrivateRoute>
         }
@@ -30,7 +33,7 @@ export default function AppRoutes() {
       <Route
         path="/admin"
         element={
-          <PrivateRoute allowedRoles={["admin"]}>
+          <PrivateRoute allowedRoles={[UserRole.Admin]}>
             <Admin />
           </PrivateRoute>
         }

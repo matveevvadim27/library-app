@@ -1,4 +1,5 @@
 import { useAuth } from "../../context/AuthContext";
+import { UserRole } from "../../constants/UserRoles";
 
 export default function AddUsers() {
   const { newUser, setNewUser, handleAddUser } = useAuth();
@@ -38,7 +39,9 @@ export default function AddUsers() {
         <select
           className="add__input"
           value={newUser.role}
-          onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
+          onChange={(e) =>
+            setNewUser({ ...newUser, role: e.target.value as UserRole })
+          }
         >
           <option value="client">Клиент</option>
           <option value="librarian">Библиотекарь</option>

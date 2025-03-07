@@ -12,8 +12,8 @@ export default function AddBook() {
   const [description, setDescription] = useState("");
   const [genre, setGenre] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     if (!title || !author || !publisher || !genre) {
       toast.error("Название, автор, жанр и издательство обязательны!");

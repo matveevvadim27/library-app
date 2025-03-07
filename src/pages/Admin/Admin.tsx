@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
 
 export default function Admin() {
-  const { users, deleteUser, addUser, updateUser } = useAuth();
+  const { users, deleteUser, updateUser } = useAuth();
   const [editUser, setEditUser] = useState(null);
 
   return (
@@ -15,7 +15,7 @@ export default function Admin() {
           Добро пожаловать в управление библиотекой.
         </h1>
         <div className="admin__forms">
-          <AddUsers addUser={addUser} users={users} />
+          <AddUsers />
           {editUser && (
             <EditUsers
               editUser={editUser}

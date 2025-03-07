@@ -7,11 +7,12 @@ import React, {
 } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserRole } from "../constants/UserRoles";
 
 interface User {
   name: string;
   password: string;
-  role: string;
+  role: UserRole;
 }
 
 interface UpdatedUser extends User {
@@ -51,13 +52,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [newUser, setNewUser] = useState<User>({
     name: "",
     password: "",
-    role: "client",
+    role: UserRole.Client,
   });
 
   const handleAddUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (register(newUser.name, newUser.password, newUser.role)) {
-      setNewUser({ name: "", password: "", role: "client" });
+      setNewUser({ name: "", password: "", role: UserRole.Client });
     }
   };
 
@@ -101,7 +102,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       toast.error("Имя уже занято!");
       return false;
     }
-    setUsers((prevUsers) => [...prevUsers, { name, password, role }]);
+    setUsers((prevUsers) => [
+      ...prevUsers,
+      { name, password, role: role as UserRole },
+    ]);
     toast.success("Пользователь успешно добавлен!");
     return true;
   };
