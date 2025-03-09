@@ -1,5 +1,5 @@
-import { useBooks, Book } from "../../context/BooksContext";
-import { useAuth, User } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
+import { useBookStore, Book } from "store/bookStore";
 
 interface BookCardProps {
   book: Book;
@@ -7,7 +7,7 @@ interface BookCardProps {
 
 export default function BookCard({ book }: BookCardProps) {
   const { user } = useAuth();
-  const { removeBook } = useBooks();
+  const { removeBook } = useBookStore();
 
   const handleDelete = () => {
     if (!book || book.id === undefined) return;

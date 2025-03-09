@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useBooks } from "../../context/BooksContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useBookStore } from "store/bookStore";
 
 export default function AddBook() {
-  const { addBook } = useBooks();
+  const { addBook } = useBookStore();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publisher, setPublisher] = useState("");
@@ -29,6 +29,7 @@ export default function AddBook() {
     setGenre("");
 
     toast.success("Книга успешно добавлена!");
+    console.log(addBook);
   };
 
   return (

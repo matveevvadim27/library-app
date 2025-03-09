@@ -1,14 +1,12 @@
-import { useBooks, Book } from "../../context/BooksContext";
+import { Book, useBookStore } from "store/bookStore";
 import BookCard from "../BookCard/BookCard";
-import { useAuth, User } from "../../context/AuthContext";
 
 interface BookCardProps {
   books: Book[];
 }
 
-export default function BookList({ books }: BookCardProps) {
-  const { removeBook } = useBooks();
-  const { user } = useAuth();
+export default function BookList() {
+  const { books } = useBookStore();
 
   return !books || books.length === 0 ? (
     <h2 className="booklist__empty">Список книг пуст</h2>

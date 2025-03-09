@@ -1,4 +1,4 @@
-import { Book } from "context/BooksContext";
+import { Book } from "store/bookStore";
 
 export const filterBooks = (books: Book[], searchQuery: string): Book[] => {
   if (!searchQuery.trim()) return [];
