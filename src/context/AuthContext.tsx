@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserRole } from "../constants/UserRoles";
 
-interface User {
+export interface User {
   name: string;
   password: string;
   role: UserRole;
@@ -19,7 +19,7 @@ interface UpdatedUser extends User {
   oldName: string;
 }
 
-interface AuthContextType {
+export interface AuthContextType {
   user: User | null;
   users: User[];
   newUser: User;

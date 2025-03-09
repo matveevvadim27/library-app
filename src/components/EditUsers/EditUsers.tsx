@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useAuth, User } from "../../context/AuthContext";
+import { UserRole } from "../../constants/UserRoles";
 
-export default function EditUsers({ editUser, setEditUser, updateUser }) {
+interface AdminProps {
+  editUser: User;
+  setEditUser: Dispatch<SetStateAction<User | null>>;
+}
+
+export default function EditUsers({ editUser, setEditUser }: AdminProps) {
+  const { updateUser } = useAuth();
   const [editedUser, setEditedUser] = useState(editUser);
 
-  const handleEditUser = (e) => {
+  const handleEditUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!editedUser.name || !editedUser.password) return;
     updateUser({ ...editedUser, oldName: editUser.name });
@@ -44,7 +52,7 @@ export default function EditUsers({ editUser, setEditUser, updateUser }) {
           className="change__input"
           value={editedUser.role}
           onChange={(e) =>
-            setEditedUser({ ...editedUser, role: e.target.value })
+            setEditedUser({ ...editedUser, role: e.target.value as UserRole })
           }
         >
           <option value="client">Клиент</option>

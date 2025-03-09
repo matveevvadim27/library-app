@@ -3,8 +3,17 @@ import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { UserRole } from "../../constants/UserRoles";
 import "react-toastify/dist/ReactToastify.css";
+import { ReactNode } from "react";
 
-export default function PrivateRoute({ allowedRoles, children }) {
+interface PrivateRouteProps {
+  children: ReactNode;
+  allowedRoles: UserRole[];
+}
+
+export default function PrivateRoute({
+  children,
+  allowedRoles,
+}: PrivateRouteProps) {
   const { user } = useAuth();
 
   if (!user) {

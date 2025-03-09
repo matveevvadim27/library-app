@@ -1,9 +1,16 @@
-import { useBooks } from "../../context/BooksContext";
+import { useBooks, Book } from "../../context/BooksContext";
+import { useAuth, User } from "../../context/AuthContext";
 
-export default function BookCard({ book, user }) {
+interface BookCardProps {
+  book: Book;
+}
+
+export default function BookCard({ book }: BookCardProps) {
+  const { user } = useAuth();
   const { removeBook } = useBooks();
 
   const handleDelete = () => {
+    if (!book || book.id === undefined) return;
     if (window.confirm(`Удалить книгу "${book.title}"?`)) {
       removeBook(book.id);
     }

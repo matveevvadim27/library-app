@@ -1,12 +1,12 @@
 import AddUsers from "../../components/AddUsers/AddUsers";
 import EditUsers from "../../components/EditUsers/EditUsers";
 import UsersList from "../../components/UsersList/UsersList";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth, User } from "../../context/AuthContext";
 import { useState } from "react";
 
 export default function Admin() {
-  const { users, deleteUser, updateUser } = useAuth();
-  const [editUser, setEditUser] = useState(null);
+  const { users, deleteUser } = useAuth();
+  const [editUser, setEditUser] = useState<User | null>(null);
 
   return (
     <main className="admin">
@@ -17,18 +17,10 @@ export default function Admin() {
         <div className="admin__forms">
           <AddUsers />
           {editUser && (
-            <EditUsers
-              editUser={editUser}
-              setEditUser={setEditUser}
-              updateUser={updateUser}
-            />
+            <EditUsers editUser={editUser} setEditUser={setEditUser} />
           )}
         </div>
-        <UsersList
-          users={users}
-          setEditUser={setEditUser}
-          deleteUser={deleteUser}
-        />
+        <UsersList setEditUser={setEditUser} />
       </section>
     </main>
   );

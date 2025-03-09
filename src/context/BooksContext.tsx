@@ -16,7 +16,7 @@ export type Book = {
   description: string;
 };
 
-interface BooksContextType {
+export interface BooksContextType {
   book: Book;
   books: Book[];
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;

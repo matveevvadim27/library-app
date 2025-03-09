@@ -1,4 +1,13 @@
-export default function UsersList({ users, setEditUser, deleteUser }) {
+import { Dispatch, SetStateAction } from "react";
+import { useAuth, User } from "../../context/AuthContext";
+
+interface AdminProps {
+  setEditUser: Dispatch<SetStateAction<User | null>>;
+}
+
+export default function UsersList({ setEditUser }: AdminProps) {
+  const { users, deleteUser } = useAuth();
+
   return (
     <div className="admin__users users">
       <h2 className="users__title">Список пользователей:</h2>

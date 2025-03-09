@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useBooks } from "../../context/BooksContext";
 import { filterBooks } from "../../utils/filterBooks";
-import { useAuth } from "../../context/AuthContext";
 import BooksList from "../../components/Bookslist/Bookslist";
 import BookCard from "../../components/BookCard/BookCard";
 
 export default function ClientPage() {
-  const { user } = useAuth();
   const { books } = useBooks();
   const [searchQuery, setSearchQuery] = useState("");
   const filteredBooks = filterBooks(books, searchQuery);
@@ -35,7 +33,7 @@ export default function ClientPage() {
             <p>Ничего не найдено</p>
           ) : null}
         </ul>
-        <BooksList user={user} />
+        <BooksList books={books} />
       </section>
     </main>
   );
