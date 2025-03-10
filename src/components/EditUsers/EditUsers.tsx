@@ -1,8 +1,9 @@
 import { useState, Dispatch, SetStateAction } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuth, User } from "../../context/AuthContext";
+// import { useAuth, User } from "../../context/AuthContext";
 import { UserRole } from "../../constants/UserRoles";
+import { useAuthStore, User } from "store/authStore";
 
 interface AdminProps {
   editUser: User;
@@ -10,7 +11,7 @@ interface AdminProps {
 }
 
 export default function EditUsers({ editUser, setEditUser }: AdminProps) {
-  const { updateUser } = useAuth();
+  const { updateUser } = useAuthStore();
   const [editedUser, setEditedUser] = useState(editUser);
 
   const handleEditUser = (e: React.FormEvent<HTMLFormElement>) => {

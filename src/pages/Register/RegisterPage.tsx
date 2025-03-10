@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+// import { useAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "store/authStore";
+import { UserRole } from "../../constants/UserRoles";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -9,8 +11,10 @@ export default function RegisterPage() {
   const [role, setRole] = useState("client");
   const [error, setError] = useState("");
 
-  const { register } = useAuth();
+  const { register } = useAuthStore();
   const navigate = useNavigate();
+
+  const selectedRole = role as UserRole;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,7 +22,7 @@ export default function RegisterPage() {
       setError("Пароли не совпадают!");
       return;
     }
-    const success = register(name, password, role);
+    const success = register(name, password, selectedRole);
     if (success) {
       navigate("/login");
     } else {

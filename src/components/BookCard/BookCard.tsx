@@ -1,13 +1,14 @@
-import { useAuth } from "../../context/AuthContext";
+// import { useAuth } from "../../context/AuthContext";
 import { useBookStore } from "store/bookStore";
 import { Book } from "../../schemas/BookSchema";
+import { useAuthStore } from "store/authStore";
 
 interface BookCardProps {
   book: Book;
 }
 
 export default function BookCard({ book }: BookCardProps) {
-  const { user } = useAuth();
+  const { user } = useAuthStore();
   const { removeBook } = useBookStore();
 
   const handleDelete = () => {

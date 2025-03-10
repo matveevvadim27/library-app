@@ -1,12 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+// import { useAuth } from "../../context/AuthContext";
 import Navbar from "../Navbar/Navbar";
 import Burger from "../Burger/Burger";
 import logo from "../../assets/icons/logo.png";
+import { useAuthStore } from "store/authStore";
 
 export default function Header() {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuthStore();
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
 

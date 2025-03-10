@@ -1,16 +1,6 @@
 import { create } from "zustand";
 import { Book } from "../schemas/BookSchema";
 
-// export type Book = {
-//   id?: number;
-//   title: string;
-//   author: string;
-//   publisher: string;
-//   genre: string;
-//   image: string;
-//   description: string;
-// };
-
 export interface BooksStore {
   books: Book[];
   addBook: (book: Book) => void;

@@ -1,12 +1,13 @@
 import { Dispatch, SetStateAction } from "react";
-import { useAuth, User } from "../../context/AuthContext";
+// import { useAuth, User } from "../../context/AuthContext";
+import { useAuthStore, User } from "store/authStore";
 
 interface AdminProps {
   setEditUser: Dispatch<SetStateAction<User | null>>;
 }
 
 export default function UsersList({ setEditUser }: AdminProps) {
-  const { users, deleteUser } = useAuth();
+  const { users, deleteUser } = useAuthStore();
 
   return (
     <div className="admin__users users">

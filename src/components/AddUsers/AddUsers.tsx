@@ -1,8 +1,16 @@
-import { useAuth } from "../../context/AuthContext";
+// import { useAuth } from "../../context/AuthContext";
 import { UserRole } from "../../constants/UserRoles";
+import { useAuthStore } from "store/authStore";
 
 export default function AddUsers() {
-  const { newUser, setNewUser, handleAddUser } = useAuth();
+  const { newUser, setNewUser, register } = useAuthStore();
+
+  const handleAddUser = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (register(newUser.name, newUser.password, newUser.role)) {
+      setNewUser({ name: "", password: "", role: UserRole.Client });
+    }
+  };
 
   return (
     <form onSubmit={handleAddUser} className="add">
