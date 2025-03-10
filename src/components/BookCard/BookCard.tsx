@@ -1,5 +1,6 @@
 import { useAuth } from "../../context/AuthContext";
-import { useBookStore, Book } from "store/bookStore";
+import { useBookStore } from "store/bookStore";
+import { Book } from "../../schemas/BookSchema";
 
 interface BookCardProps {
   book: Book;

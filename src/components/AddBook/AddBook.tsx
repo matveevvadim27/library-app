@@ -1,102 +1,60 @@
-import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useBookStore } from "store/bookStore";
+import { bookSchema } from "../../schemas/BookSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+
+type TBookFormData = z.infer<typeof bookSchema>;
 
 export default function AddBook() {
   const { addBook } = useBookStore();
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [publisher, setPublisher] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [genre, setGenre] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TBookFormData>({ resolver: zodResolver(bookSchema) });
 
-    if (!title || !author || !publisher || !genre) {
-      toast.error("Название, автор, жанр и издательство обязательны!");
-      return;
-    }
-
-    addBook({ title, author, publisher, genre, image, description });
-    setTitle("");
-    setAuthor("");
-    setPublisher("");
-    setImage("");
-    setDescription("");
-    setGenre("");
-
+  const onSubmit = (data: TBookFormData) => {
+    addBook(data);
     toast.success("Книга успешно добавлена!");
-    console.log(addBook);
   };
-
   return (
-    <form className="edit__form" onSubmit={handleSubmit}>
+    <form className="edit__form" onSubmit={handleSubmit(onSubmit)}>
       <label className="edit__label">
         Название:
-        <input
-          className="edit__input"
-          type="text"
-          value={title}
-          title="Разрешены только буквы и числа!"
-          pattern="[A-Za-zА-Яа-яЁё0-9\s]+"
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <input {...register("title")} className="edit__input" />
+        {errors.title && toast.error(errors.title.message)}
       </label>
 
       <label className="edit__label">
         Автор:
-        <input
-          className="edit__input"
-          type="text"
-          value={author}
-          title="Разрешены только буквы и числа!"
-          pattern="[A-Za-zА-Яа-яЁё0-9\s]+"
-          onChange={(e) => setAuthor(e.target.value)}
-        />
+        <input {...register("author")} className="edit__input" />
+        {errors.author && toast.error(errors.author.message)}
       </label>
 
       <label className="edit__label">
         Издательство:
-        <input
-          className="edit__input"
-          type="text"
-          value={publisher}
-          pattern="[A-Za-zА-Яа-яЁё0-9\s]+"
-          title="Разрешены только буквы и числа!"
-          onChange={(e) => setPublisher(e.target.value)}
-        />
+        <input {...register("publisher")} className="edit__input" />
+        {errors.publisher && toast.error(errors.publisher.message)}
       </label>
       <label className="edit__label">
         Жанр:
-        <input
-          className="edit__input"
-          type="text"
-          value={genre}
-          title="Разрешены только буквы и числа!"
-          pattern="[A-Za-zА-Яа-яЁё0-9\s]+"
-          onChange={(e) => setGenre(e.target.value)}
-        />
+        <input {...register("genre")} className="edit__input" />
+        {errors.genre && toast.error(errors.genre.message)}
       </label>
       <label className="edit__label">
         Картинка (URL):
-        <input
-          className="edit__input"
-          type="text"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
+        <input {...register("image")} className="edit__input" />
+        {errors.image && toast.error(errors.image.message)}
       </label>
 
       <label className="edit__label">
         Описание:
-        <textarea
-          className="edit__input"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <textarea {...register("description")} className="edit__input" />
+        {errors.description && toast.error(errors.description.message)}
       </label>
       <button className="edit__button" type="submit">
         Добавить книгу

@@ -25,5 +25,5 @@ export default function PrivateRoute({
     return <Navigate to="/" replace />;
   }
 
-  return children;
+  return <>{children}</>;
 }

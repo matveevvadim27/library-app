@@ -1,5 +1,6 @@
-import { Book, useBookStore } from "store/bookStore";
+import { useBookStore } from "store/bookStore";
 import BookCard from "../BookCard/BookCard";
+import { Book } from "../../schemas/BookSchema";
 
 interface BookCardProps {
   books: Book[];

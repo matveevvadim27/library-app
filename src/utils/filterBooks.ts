@@ -1,4 +1,4 @@
-import { Book } from "store/bookStore";
+import { Book } from "../schemas/BookSchema";
 
 export const filterBooks = (books: Book[], searchQuery: string): Book[] => {
   if (!searchQuery.trim()) return [];
