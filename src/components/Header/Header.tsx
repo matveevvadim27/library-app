@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-// import { useAuth } from "../../context/AuthContext";
 import Navbar from "../Navbar/Navbar";
 import Burger from "../Burger/Burger";
 import logo from "../../assets/icons/logo.png";

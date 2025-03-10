@@ -1,5 +1,4 @@
 import { Navigate } from "react-router-dom";
-// import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { UserRole } from "../../constants/UserRoles";
 import "react-toastify/dist/ReactToastify.css";

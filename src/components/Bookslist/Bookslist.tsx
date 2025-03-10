@@ -1,10 +1,5 @@
 import { useBookStore } from "store/bookStore";
 import BookCard from "../BookCard/BookCard";
-import { Book } from "../../schemas/BookSchema";
-
-interface BookCardProps {
-  books: Book[];
-}
 
 export default function BookList() {
   const { books } = useBookStore();

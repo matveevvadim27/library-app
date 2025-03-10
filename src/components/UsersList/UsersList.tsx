@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-// import { useAuth, User } from "../../context/AuthContext";
-import { useAuthStore, User } from "store/authStore";
+import { useAuthStore } from "store/authStore";
+import { User } from "../../schemas/AuthSchema";
 
 interface AdminProps {
   setEditUser: Dispatch<SetStateAction<User | null>>;

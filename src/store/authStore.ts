@@ -1,17 +1,13 @@
 import { create } from "zustand";
 import { UserRole } from "../constants/UserRoles";
-
-export interface User {
-  name: string;
-  password: string;
-  role: UserRole;
-}
+import { User } from "../schemas/AuthSchema";
+import { toast } from "react-toastify";
 
 interface UpdatedUser extends User {
   oldName: string;
 }
 
-interface IAuthStore {
+export interface IAuthStore {
   user: User | null;
   users: User[];
   newUser: User;
@@ -34,8 +30,10 @@ export const useAuthStore = create<IAuthStore>((set, get) => ({
     );
     if (foundUser) {
       set({ user: foundUser });
+
       return true;
     }
+    toast.error("Неверное имя или пароль!");
     return false;
   },
 
@@ -44,6 +42,7 @@ export const useAuthStore = create<IAuthStore>((set, get) => ({
       return false;
     }
     if (get().users.some((u) => u.name === name)) {
+      toast.error("Пользователь с таким именем уже существует!");
       return false;
     }
     const newUser = { name, password, role };

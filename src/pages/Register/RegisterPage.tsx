@@ -1,32 +1,63 @@
 import { useState } from "react";
-// import { useAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthStore } from "store/authStore";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { UserRole } from "../../constants/UserRoles";
+import { useAuthStore } from "store/authStore";
+import { z } from "zod";
+import { toast } from "react-toastify";
+
+const registerSchema = z.object({
+  name: z
+    .string()
+    .min(3, "Имя должно быть не менее 3 символов!")
+    .regex(
+      /^[A-Za-zА-Яа-яЁё0-9]+$/,
+      "Имя может содержать только буквы и числа!"
+    ),
+  password: z
+    .string()
+    .min(3, "Пароль должен быть не менее 3 символов!")
+    .max(12, "Пароль не должен превышать 12 символов!")
+    .regex(
+      /^[A-Za-z0-9]+$/,
+      "Пароль может содержать только латинские буквы и цифры!"
+    ),
+  confirmPassword: z
+    .string()
+    .min(3, "Подтверждение пароля должно быть не менее 3 символов!")
+    .max(12, "Подтверждение пароля не должно превышать 12 символов!"),
+  role: z.enum([UserRole.Admin, UserRole.Librarian, UserRole.Client]),
+});
+
+type RegisterFormData = z.infer<typeof registerSchema>;
 
 export default function RegisterPage() {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState("client");
-  const [error, setError] = useState("");
-
-  const { register } = useAuthStore();
+  const { register: registerUser } = useAuthStore();
   const navigate = useNavigate();
 
-  const selectedRole = role as UserRole;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+  });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const password = watch("password");
+  const confirmPassword = watch("confirmPassword");
+
+  const onSubmit = (data: RegisterFormData) => {
     if (password !== confirmPassword) {
-      setError("Пароли не совпадают!");
       return;
     }
-    const success = register(name, password, selectedRole);
+    const success = registerUser(data.name, data.password, data.role);
     if (success) {
       navigate("/login");
+      toast.success("Успешная регистрация!");
     } else {
-      setError("Имя уже занято!");
+      // Можно добавить ошибку для уже занятых имен, если это нужно
     }
   };
 
@@ -34,63 +65,46 @@ export default function RegisterPage() {
     <main className="auth">
       <section className="auth__section container">
         <h2 className="auth__title">Регистрация</h2>
-        <form onSubmit={handleSubmit} className="auth__form">
+        <form onSubmit={handleSubmit(onSubmit)} className="auth__form">
           <label className="auth__label">
             Имя:
-            <input
-              className="auth__input"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              maxLength={12}
-              pattern="[A-Za-zА-Яа-яЁё0-9]+"
-              title="Имя может содержать только буквы и числа!"
-              required
-            />
+            <input className="auth__input" type="text" {...register("name")} />
+            {errors.name && toast.error(errors.name.message)}
           </label>
           <label className="auth__label">
             Пароль:
             <input
               className="auth__input"
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              minLength={3}
-              maxLength={12}
-              pattern="[A-Za-z0-9]+"
-              title="Пароль может содержать только латинские буквы и цифры!"
-              required
+              {...register("password")}
             />
+            {errors.password && toast.error(errors.password.message)}
           </label>
           <label className="auth__label">
             Подтвердите пароль:
             <input
               className="auth__input"
               type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
+              {...register("confirmPassword")}
             />
+            {errors.confirmPassword &&
+              toast.error(errors.confirmPassword.message)}
           </label>
           <label className="auth__label">
             Выберите роль:
-            <select
-              className="auth__input"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-            >
+            <select className="auth__input" {...register("role")}>
               <option value="client">Клиент</option>
               <option value="librarian">Библиотекарь</option>
               <option value="admin">Администратор</option>
             </select>
+            {errors.role && toast.error(errors.role.message)}
           </label>
-          {error && <p className="auth__error">{error}</p>}
           <button className="auth__button" type="submit">
             Зарегистрироваться
           </button>
         </form>
         <p>
-          Уже есть аккаунт?
+          Уже есть аккаунт?{" "}
           <Link className="auth__link" to="/login">
             Войти
           </Link>

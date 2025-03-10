@@ -1,19 +1,29 @@
-// import { useAuth } from "../../context/AuthContext";
 import { UserRole } from "../../constants/UserRoles";
 import { useAuthStore } from "store/authStore";
+import { userSchema, User } from "../../schemas/AuthSchema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 
 export default function AddUsers() {
-  const { newUser, setNewUser, register } = useAuthStore();
+  const {
+    register: registerUser,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<User>({
+    resolver: zodResolver(userSchema),
+  });
+  const { setNewUser, register } = useAuthStore();
 
-  const handleAddUser = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (register(newUser.name, newUser.password, newUser.role)) {
+  const handleAddUser = (data: User) => {
+    if (register(data.name, data.password, data.role)) {
       setNewUser({ name: "", password: "", role: UserRole.Client });
+      toast.success("Пользователь успешно добавлен!");
     }
   };
 
   return (
-    <form onSubmit={handleAddUser} className="add">
+    <form onSubmit={handleSubmit(handleAddUser)} className="add">
       <h3 className="change__title">Добавить пользователя:</h3>
       <label className="add__label">
         Имя:
@@ -21,12 +31,9 @@ export default function AddUsers() {
           className="add__input"
           type="text"
           placeholder="Имя"
-          value={newUser.name}
-          maxLength={12}
-          pattern="[A-Za-zА-Яа-яЁё0-9]+"
-          title="Имя может содержать только буквы и числа!"
-          onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+          {...registerUser("name")}
         />
+        {errors.name && toast.error(errors.name.message)}
       </label>
       <label className="add__label">
         Пароль:
@@ -34,27 +41,18 @@ export default function AddUsers() {
           className="add__input"
           type="password"
           placeholder="Пароль"
-          value={newUser.password}
-          minLength={3}
-          maxLength={12}
-          pattern="[A-Za-z0-9]+"
-          title="Пароль может содержать только латинские буквы и цифры!"
-          onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+          {...registerUser("password")}
         />
+        {errors.password && toast.error(errors.password.message)}
       </label>
       <label className="add__label">
         Роль:
-        <select
-          className="add__input"
-          value={newUser.role}
-          onChange={(e) =>
-            setNewUser({ ...newUser, role: e.target.value as UserRole })
-          }
-        >
-          <option value="client">Клиент</option>
-          <option value="librarian">Библиотекарь</option>
-          <option value="admin">Администратор</option>
+        <select className="add__input" {...registerUser("role")}>
+          <option value={UserRole.Client}>Клиент</option>
+          <option value={UserRole.Librarian}>Библиотекарь</option>
+          <option value={UserRole.Admin}>Администратор</option>
         </select>
+        {errors.role && toast.error(errors.role.message)}
       </label>
       <button className="add__button" type="submit">
         Добавить
