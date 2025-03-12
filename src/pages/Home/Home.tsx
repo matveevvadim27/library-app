@@ -1,15 +1,15 @@
+import styles from "./home.module.scss";
+
 export default function Home() {
   return (
-    <main className="home">
-      <section className="home__section container">
-        <h1 className="home__title">Добро пожаловать в библиотеку!</h1>
-        <h2 className="home__description">
+    <main className={styles.home}>
+      <section className={`${styles.home__section} container`}>
+        <h1>Добро пожаловать в библиотеку!</h1>
+        <h2>
           Здесь вы можете просматривать книги, добавлять новые издания и
           управлять библиотекой.
         </h2>
-        <p className="home__instructions">
-          Перед началом, пожалуйста, авторизуйтесь!
-        </p>
+        <p>Перед началом, пожалуйста, авторизуйтесь!</p>
       </section>
     </main>
   );

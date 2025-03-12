@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,6 +5,7 @@ import { UserRole } from "../../constants/UserRoles";
 import { useAuthStore } from "store/authStore";
 import { z } from "zod";
 import { toast } from "react-toastify";
+import styles from "./registerpage.module.scss";
 
 const registerSchema = z.object({
   name: z
@@ -56,56 +56,58 @@ export default function RegisterPage() {
     if (success) {
       navigate("/login");
       toast.success("Успешная регистрация!");
-    } else {
-      // Можно добавить ошибку для уже занятых имен, если это нужно
     }
   };
 
   return (
-    <main className="auth">
-      <section className="auth__section container">
-        <h2 className="auth__title">Регистрация</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="auth__form">
-          <label className="auth__label">
+    <main className={styles.auth}>
+      <section className={`${styles.auth__section} container`}>
+        <h2 className={styles.auth__title}>Регистрация</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.auth__form}>
+          <label className={styles.auth__label}>
             Имя:
-            <input className="auth__input" type="text" {...register("name")} />
+            <input
+              className={styles.auth__input}
+              type="text"
+              {...register("name")}
+            />
             {errors.name && toast.error(errors.name.message)}
           </label>
-          <label className="auth__label">
+          <label className={styles.auth__label}>
             Пароль:
             <input
-              className="auth__input"
+              className={styles.auth__input}
               type="password"
               {...register("password")}
             />
             {errors.password && toast.error(errors.password.message)}
           </label>
-          <label className="auth__label">
+          <label className={styles.auth__label}>
             Подтвердите пароль:
             <input
-              className="auth__input"
+              className={styles.auth__input}
               type="password"
               {...register("confirmPassword")}
             />
             {errors.confirmPassword &&
               toast.error(errors.confirmPassword.message)}
           </label>
-          <label className="auth__label">
+          <label className={styles.auth__label}>
             Выберите роль:
-            <select className="auth__input" {...register("role")}>
+            <select className={styles.auth__input} {...register("role")}>
               <option value="client">Клиент</option>
               <option value="librarian">Библиотекарь</option>
               <option value="admin">Администратор</option>
             </select>
             {errors.role && toast.error(errors.role.message)}
           </label>
-          <button className="auth__button" type="submit">
+          <button className={styles.auth__button} type="submit">
             Зарегистрироваться
           </button>
         </form>
         <p>
           Уже есть аккаунт?{" "}
-          <Link className="auth__link" to="/login">
+          <Link className={styles.auth__link} to="/login">
             Войти
           </Link>
         </p>

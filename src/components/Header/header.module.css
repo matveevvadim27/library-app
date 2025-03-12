@@ -1,0 +1,83 @@
+.header {
+  background-color: var(--color-header);
+  padding: 0 0.625rem;
+}
+.header__container {
+  padding: 1.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  font-size: clamp(1.125rem, 1.078125rem + 0.1923076923vw, 1.25rem);
+  font-weight: var(--fw-600);
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.header__logo:hover {
+  color: var(--color-links);
+}
+.header__overlay {
+  display: flex;
+}
+@media (width > 48.06125rem) {
+  .header__overlay {
+    display: contents;
+  }
+}
+@media (width <= 48.06125rem) {
+  .header__overlay {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2.5rem;
+    background-color: var(--color-white);
+    position: fixed;
+    inset: 0;
+    transition-duration: var(--td);
+  }
+  .header__overlay:not(.is-active) {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    -webkit-clip-path: inset(100%) !important;
+            clip-path: inset(100%) !important;
+    clip: rect(0 0 0 0) !important;
+    overflow: hidden !important;
+    translate: 100%;
+  }
+}
+.header__login {
+  font-size: clamp(1rem, 0.953125rem + 0.1923076923vw, 1.125rem);
+  padding: 0.625rem 1.25rem;
+  background-color: var(--color-login);
+  color: var(--color-white);
+  border-radius: 0.3125rem;
+}
+.header__login:hover {
+  background-color: var(--color-white);
+  color: var(--color-login);
+  outline: 0.0625rem solid var(--color-login);
+  transform: scale(0.85);
+  transition-duration: var(--td);
+}
+.header__button {
+  font-size: clamp(1rem, 0.953125rem + 0.1923076923vw, 1.125rem);
+  border: none;
+  padding: 0.625rem 1.25rem;
+  background-color: var(--color-login);
+  color: var(--color-white);
+  border-radius: 0.3125rem;
+}
+.header__button:hover {
+  background-color: var(--color-white);
+  color: var(--color-login);
+  outline: 0.0625rem solid var(--color-login);
+  transform: scale(0.85);
+}/*# sourceMappingURL=header.module.css.map */

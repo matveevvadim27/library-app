@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import styles from "./burger.module.scss";
 
 interface BurgerProps {
   isActive: boolean;
@@ -16,12 +17,14 @@ export default function Burger({ isActive, onClick }: BurgerProps) {
 
   return (
     <button
-      className={`burger visible-tablet-s ${isActive ? "is-active" : ""}`}
+      className={`${styles.burger} visible-tablet-s ${
+        isActive ? "is-active" : ""
+      }`}
       onClick={onClick}
     >
-      <span className="burger__line"></span>
-      <span className="burger__line"></span>
-      <span className="burger__line"></span>
+      <span className={styles.burger__line}></span>
+      <span className={styles.burger__line}></span>
+      <span className={styles.burger__line}></span>
     </button>
   );
 }

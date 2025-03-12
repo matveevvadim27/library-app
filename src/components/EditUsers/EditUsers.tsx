@@ -5,6 +5,7 @@ import { useAuthStore } from "store/authStore";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema, User } from "../../schemas/AuthSchema";
+import styles from "./editUsers.module.scss";
 
 interface AdminProps {
   editUser: User;
@@ -29,36 +30,40 @@ export default function EditUsers({ editUser, setEditUser }: AdminProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="change">
-      <h3 className="change__title">Редактировать: {editUser.name}</h3>
-      <label className="change__label">
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.change}>
+      <h3 className={styles.change__title}>Редактировать: {editUser.name}</h3>
+      <label className={styles.change__label}>
         Имя:
-        <input className="change__input" type="text" {...register("name")} />
+        <input
+          className={styles.change__input}
+          type="text"
+          {...register("name")}
+        />
         {errors.name && toast.error(errors.name.message)}
       </label>
-      <label className="change__label">
+      <label className={styles.change__label}>
         Пароль:
         <input
-          className="change__input"
+          className={styles.change__input}
           type="password"
           {...register("password")}
         />
         {errors.password && toast.error(errors.password.message)}
       </label>
-      <label className="change__label">
+      <label className={styles.change__label}>
         Роль:
-        <select className="change__input" {...register("role")}>
+        <select className={styles.change__input} {...register("role")}>
           <option value={UserRole.Client}>Клиент</option>
           <option value={UserRole.Librarian}>Библиотекарь</option>
           <option value={UserRole.Admin}>Администратор</option>
         </select>
         {errors.role && toast.error(errors.role.message)}
       </label>
-      <button className="change__save" type="submit">
+      <button className={styles.change__save} type="submit">
         Сохранить
       </button>
       <button
-        className="change__cancel"
+        className={styles.change__cancel}
         type="button"
         onClick={() => setEditUser(null)}
       >

@@ -32,3 +32,9 @@
     }
   }
 }
+.books__list {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: rem(30);
+}

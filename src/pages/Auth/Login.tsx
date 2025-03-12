@@ -3,6 +3,7 @@ import { useAuthStore } from "store/authStore";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import styles from "./login.module.scss";
 
 const loginSchema = z.object({
   name: z.string().min(3, "Имя должно быть не менее 3 символов!"),
@@ -31,29 +32,33 @@ export default function Login() {
   };
 
   return (
-    <main className="login">
-      <section className="login__section container">
-        <h2 className="login__title">Вход</h2>
+    <main className={styles.login}>
+      <section className={`${styles.login__section} container`}>
+        <h2 className={styles.login__title}>Вход</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="login__form">
-          <label className="login__label">
+          <label className={styles.login__label}>
             Имя:
-            <input className="login__input" type="text" {...register("name")} />
+            <input
+              className={styles.login__input}
+              type="text"
+              {...register("name")}
+            />
           </label>
-          <label className="login__label">
+          <label className={styles.login__label}>
             Пароль:
             <input
-              className="login__input"
+              className={styles.login__input}
               type="password"
               {...register("password")}
             />
           </label>
-          <button className="login__button" type="submit">
+          <button className={styles.login__button} type="submit">
             Войти
           </button>
         </form>
         <p>
           Нет аккаунта?
-          <Link className="login__link" to="/register">
+          <Link className={styles.login__link} to="/register">
             Зарегистрируйтесь
           </Link>
         </p>

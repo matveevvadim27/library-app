@@ -38,9 +38,9 @@ export const useAuthStore = create<IAuthStore>((set, get) => ({
   },
 
   register: (name, password, role) => {
-    if (!name.trim() || !password.trim()) {
-      return false;
-    }
+    // if (!name.trim() || !password.trim()) {
+    //   return false;
+    // }
     if (get().users.some((u) => u.name === name)) {
       toast.error("Пользователь с таким именем уже существует!");
       return false;

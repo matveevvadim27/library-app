@@ -1,10 +1,10 @@
+import styles from "./footer.module.scss";
+
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className={"footer__container container"}>
-        <p className="footer__copyright">
-          © 2025 Библиотека. Все права защищены.
-        </p>
+    <footer className={styles.footer}>
+      <div className="container">
+        <p>© 2025 Библиотека. Все права защищены.</p>
       </div>
     </footer>
   );

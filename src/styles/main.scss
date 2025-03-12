@@ -3,21 +3,3 @@
 @use "./variables";
 @use "./utils";
 @use "./globals";
-
-@use "../pages/Home/home";
-@use "../pages/Client/client";
-@use "../pages/Admin/admin";
-@use "../pages/Edit/edit";
-@use "../pages/Auth/login";
-@use "../pages/Register/registerpage";
-
-@use "../components/Header/header";
-@use "../components/Navbar/navbar";
-@use "../components/Burger/burger";
-@use "../components/Bookslist/bookslist";
-@use "../components/Footer/footer";
-@use "../components/BookCard/bookCard";
-@use "../components/AddUsers/addUsers";
-@use "../components/EditUsers/editUsers";
-@use "../components/UsersList/usersList";
-@use "../components/AddBook/addBook";
