@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-export type Book = z.infer<typeof bookSchema>;
-
 export const bookSchema = z.object({
   id: z.number().optional(),
   title: z.string().nonempty("Название книги обязательно"),
@@ -14,3 +12,5 @@ export const bookSchema = z.object({
     .optional(),
   image: z.string().optional(),
 });
+
+export type Book = z.infer<typeof bookSchema>;

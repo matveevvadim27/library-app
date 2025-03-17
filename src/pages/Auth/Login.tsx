@@ -35,7 +35,7 @@ export default function Login() {
     <main className={styles.login}>
       <section className={`${styles.login__section} container`}>
         <h2 className={styles.login__title}>Вход</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="login__form">
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.login__form}>
           <label className={styles.login__label}>
             Имя:
             <input

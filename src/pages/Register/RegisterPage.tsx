@@ -1,34 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserRole } from "../../constants/UserRoles";
 import { useAuthStore } from "store/authStore";
 import { z } from "zod";
 import { toast } from "react-toastify";
 import styles from "./registerpage.module.scss";
-
-const registerSchema = z.object({
-  name: z
-    .string()
-    .min(3, "Имя должно быть не менее 3 символов!")
-    .regex(
-      /^[A-Za-zА-Яа-яЁё0-9]+$/,
-      "Имя может содержать только буквы и числа!"
-    ),
-  password: z
-    .string()
-    .min(3, "Пароль должен быть не менее 3 символов!")
-    .max(12, "Пароль не должен превышать 12 символов!")
-    .regex(
-      /^[A-Za-z0-9]+$/,
-      "Пароль может содержать только латинские буквы и цифры!"
-    ),
-  confirmPassword: z
-    .string()
-    .min(3, "Подтверждение пароля должно быть не менее 3 символов!")
-    .max(12, "Подтверждение пароля не должно превышать 12 символов!"),
-  role: z.enum([UserRole.Admin, UserRole.Librarian, UserRole.Client]),
-});
+import { registerSchema } from "../../schemas/registerSchema";
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
@@ -48,12 +25,12 @@ export default function RegisterPage() {
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
 
-  const onSubmit = (data: RegisterFormData) => {
+  const onSubmit = (user: RegisterFormData) => {
     if (password !== confirmPassword) {
+      toast.error("Пароли не совпадают");
       return;
     }
-    const success = registerUser(data.name, data.password, data.role);
-    if (success) {
+    if (registerUser(user.name, user.password, user.role)) {
       navigate("/login");
       toast.success("Успешная регистрация!");
     }
@@ -71,7 +48,7 @@ export default function RegisterPage() {
               type="text"
               {...register("name")}
             />
-            {errors.name && toast.error(errors.name.message)}
+            {errors.name && <p className="error">{errors.name.message}</p>}
           </label>
           <label className={styles.auth__label}>
             Пароль:
@@ -80,7 +57,9 @@ export default function RegisterPage() {
               type="password"
               {...register("password")}
             />
-            {errors.password && toast.error(errors.password.message)}
+            {errors.password && (
+              <p className="error">{errors.password.message}</p>
+            )}
           </label>
           <label className={styles.auth__label}>
             Подтвердите пароль:
@@ -89,8 +68,9 @@ export default function RegisterPage() {
               type="password"
               {...register("confirmPassword")}
             />
-            {errors.confirmPassword &&
-              toast.error(errors.confirmPassword.message)}
+            {errors.confirmPassword && (
+              <p className="error">{errors.confirmPassword.message}</p>
+            )}
           </label>
           <label className={styles.auth__label}>
             Выберите роль:
@@ -99,7 +79,6 @@ export default function RegisterPage() {
               <option value="librarian">Библиотекарь</option>
               <option value="admin">Администратор</option>
             </select>
-            {errors.role && toast.error(errors.role.message)}
           </label>
           <button className={styles.auth__button} type="submit">
             Зарегистрироваться

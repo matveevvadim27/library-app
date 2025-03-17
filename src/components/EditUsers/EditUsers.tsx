@@ -7,12 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema, User } from "../../schemas/AuthSchema";
 import styles from "./editUsers.module.scss";
 
-interface AdminProps {
+interface IAdminProps {
   editUser: User;
   setEditUser: Dispatch<SetStateAction<User | null>>;
 }
 
-export default function EditUsers({ editUser, setEditUser }: AdminProps) {
+export default function EditUsers({ editUser, setEditUser }: IAdminProps) {
   const {
     register,
     handleSubmit,
@@ -39,7 +39,7 @@ export default function EditUsers({ editUser, setEditUser }: AdminProps) {
           type="text"
           {...register("name")}
         />
-        {errors.name && toast.error(errors.name.message)}
+        {errors.name && <p className="error">{errors.name.message}</p>}
       </label>
       <label className={styles.change__label}>
         Пароль:
@@ -48,7 +48,7 @@ export default function EditUsers({ editUser, setEditUser }: AdminProps) {
           type="password"
           {...register("password")}
         />
-        {errors.password && toast.error(errors.password.message)}
+        {errors.password && <p className="error">{errors.password.message}</p>}
       </label>
       <label className={styles.change__label}>
         Роль:
@@ -57,7 +57,6 @@ export default function EditUsers({ editUser, setEditUser }: AdminProps) {
           <option value={UserRole.Librarian}>Библиотекарь</option>
           <option value={UserRole.Admin}>Администратор</option>
         </select>
-        {errors.role && toast.error(errors.role.message)}
       </label>
       <button className={styles.change__save} type="submit">
         Сохранить

@@ -12,6 +12,10 @@
   min-height: 100vh;
 }
 
+.error {
+  color: red;
+}
+
 .visually-hidden {
   @include visually-hidden;
 }

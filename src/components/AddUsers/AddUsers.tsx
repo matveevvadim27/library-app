@@ -14,11 +14,10 @@ export default function AddUsers() {
   } = useForm<User>({
     resolver: zodResolver(userSchema),
   });
-  const { setNewUser, register } = useAuthStore();
+  const { register } = useAuthStore();
 
-  const handleAddUser = (data: User) => {
-    if (register(data.name, data.password, data.role)) {
-      setNewUser({ name: "", password: "", role: UserRole.Client });
+  const handleAddUser = (user: User) => {
+    if (register(user.name, user.password, user.role)) {
       toast.success("Пользователь успешно добавлен!");
     }
   };
@@ -34,7 +33,7 @@ export default function AddUsers() {
           placeholder="Имя"
           {...registerUser("name")}
         />
-        {errors.name && toast.error(errors.name.message)}
+        {errors.name && <p className="error">{errors.name.message}</p>}
       </label>
       <label className={styles.add__label}>
         Пароль:
@@ -44,7 +43,7 @@ export default function AddUsers() {
           placeholder="Пароль"
           {...registerUser("password")}
         />
-        {errors.password && toast.error(errors.password.message)}
+        {errors.password && <p className="error">{errors.password.message}</p>}
       </label>
       <label className={styles.add__label}>
         Роль:
@@ -53,7 +52,6 @@ export default function AddUsers() {
           <option value={UserRole.Librarian}>Библиотекарь</option>
           <option value={UserRole.Admin}>Администратор</option>
         </select>
-        {errors.role && toast.error(errors.role.message)}
       </label>
       <button className={styles.add__button} type="submit">
         Добавить

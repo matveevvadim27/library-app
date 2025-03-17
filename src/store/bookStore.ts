@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { Book } from "../schemas/BookSchema";
 
-export interface BooksStore {
+export interface IBooksStore {
   books: Book[];
   addBook: (book: Book) => void;
   removeBook: (id: number) => void;
 }
-export const useBookStore = create<BooksStore>((set) => ({
+export const useBookStore = create<IBooksStore>((set) => ({
   books: [],
   addBook: (book) =>
     set((state) => ({ books: [...state.books, { id: Date.now(), ...book }] })),

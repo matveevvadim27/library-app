@@ -3,7 +3,7 @@ import { UserRole } from "../constants/UserRoles";
 import { User } from "../schemas/AuthSchema";
 import { toast } from "react-toastify";
 
-interface UpdatedUser extends User {
+interface IUpdatedUser extends User {
   oldName: string;
 }
 
@@ -15,8 +15,7 @@ export interface IAuthStore {
   register: (name: string, password: string, role: UserRole) => boolean;
   logout: () => void;
   deleteUser: (name: string) => void;
-  updateUser: (updatedUser: UpdatedUser) => void;
-  setNewUser: (user: User) => void;
+  updateUser: (updatedUser: IUpdatedUser) => void;
 }
 
 export const useAuthStore = create<IAuthStore>((set, get) => ({
@@ -38,9 +37,6 @@ export const useAuthStore = create<IAuthStore>((set, get) => ({
   },
 
   register: (name, password, role) => {
-    // if (!name.trim() || !password.trim()) {
-    //   return false;
-    // }
     if (get().users.some((u) => u.name === name)) {
       toast.error("Пользователь с таким именем уже существует!");
       return false;
@@ -80,6 +76,4 @@ export const useAuthStore = create<IAuthStore>((set, get) => ({
           : state.user,
     }));
   },
-
-  setNewUser: (user) => set({ newUser: user }),
 }));

@@ -27,35 +27,39 @@ export default function AddBook() {
       <label className={styles.edit__label}>
         Название:
         <input {...register("title")} className={styles.edit__input} />
-        {errors.title && toast.error(errors.title.message)}
+        {errors.title && <p className="error">{errors.title.message}</p>}
       </label>
 
       <label className={styles.edit__label}>
         Автор:
         <input {...register("author")} className={styles.edit__input} />
-        {errors.author && toast.error(errors.author.message)}
+        {errors.author && <p className="error">{errors.author.message}</p>}
       </label>
 
       <label className={styles.edit__label}>
         Издательство:
         <input {...register("publisher")} className={styles.edit__input} />
-        {errors.publisher && toast.error(errors.publisher.message)}
+        {errors.publisher && (
+          <p className="error">{errors.publisher.message}</p>
+        )}
       </label>
       <label className={styles.edit__label}>
         Жанр:
         <input {...register("genre")} className={styles.edit__input} />
-        {errors.genre && toast.error(errors.genre.message)}
+        {errors.genre && <p className="error">{errors.genre.message}</p>}
       </label>
       <label className={styles.edit__label}>
         Картинка (URL):
         <input {...register("image")} className={styles.edit__input} />
-        {errors.image && toast.error(errors.image.message)}
+        {errors.image && <p className="error">{errors.image.message}</p>}
       </label>
 
       <label className={styles.edit__label}>
         Описание:
         <textarea {...register("description")} className={styles.edit__input} />
-        {errors.description && toast.error(errors.description.message)}
+        {errors.description && (
+          <p className="error">{errors.description.message}</p>
+        )}
       </label>
       <button className={styles.edit__button} type="submit">
         Добавить книгу

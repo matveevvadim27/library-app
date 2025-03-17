@@ -188,6 +188,10 @@ svg * {
   min-height: 100vh;
 }
 
+.error {
+  color: red;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px !important;
