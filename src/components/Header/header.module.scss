@@ -39,7 +39,7 @@
       inset: 0;
       transition-duration: var(--td);
 
-      &:not(.is-active) {
+      &:not(.isActive) {
         @include visually-hidden;
         translate: 100%;
       }

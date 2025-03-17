@@ -9,7 +9,7 @@
   align-items: center;
   flex-shrink: 0;
 
-  &.is-active {
+  &.isActive {
     .burger__line {
       &:first-child {
         rotate: 45deg;

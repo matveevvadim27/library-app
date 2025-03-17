@@ -4,7 +4,7 @@ import { UserRole } from "../../constants/UserRoles";
 import { useAuthStore } from "store/authStore";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userSchema, User } from "../../schemas/AuthSchema";
+import { userSchema, User } from "../../schemas/authSchema";
 import styles from "./editUsers.module.scss";
 
 interface IAdminProps {

@@ -7,7 +7,7 @@ import styles from "./client.module.scss";
 
 export default function ClientPage() {
   const { books } = useBookStore();
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const filteredBooks = filterBooks(books, searchQuery);
 
   return (

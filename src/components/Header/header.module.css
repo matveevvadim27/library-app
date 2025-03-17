@@ -38,7 +38,7 @@
     inset: 0;
     transition-duration: var(--td);
   }
-  .header__overlay:not(.is-active) {
+  .header__overlay:not(.isActive) {
     position: absolute !important;
     width: 1px !important;
     height: 1px !important;

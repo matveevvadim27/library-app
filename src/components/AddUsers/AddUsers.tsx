@@ -1,6 +1,6 @@
 import { UserRole } from "../../constants/UserRoles";
 import { useAuthStore } from "store/authStore";
-import { userSchema, User } from "../../schemas/AuthSchema";
+import { userSchema, User } from "../../schemas/authSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";

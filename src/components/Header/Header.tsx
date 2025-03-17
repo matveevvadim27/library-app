@@ -8,7 +8,7 @@ import styles from "./header.module.scss";
 
 export default function Header() {
   const { user, logout } = useAuthStore();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -28,7 +28,9 @@ export default function Header() {
           Библиотека
         </Link>
         <div
-          className={`${styles.header__overlay} ${isActive ? "is-active" : ""}`}
+          className={`${styles.header__overlay} ${
+            isActive ? styles.isActive : ""
+          }`}
           onClick={closeOverlay}
         >
           <Navbar />

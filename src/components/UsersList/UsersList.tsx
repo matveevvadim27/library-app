@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { useAuthStore } from "store/authStore";
-import { User } from "../../schemas/AuthSchema";
+import { User } from "../../schemas/authSchema";
 import styles from "./usersList.module.scss";
 
 interface AdminProps {

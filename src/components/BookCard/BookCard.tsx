@@ -1,5 +1,5 @@
 import { useBookStore } from "store/bookStore";
-import { Book } from "../../schemas/BookSchema";
+import { Book } from "../../schemas/bookSchema";
 import { useAuthStore } from "store/authStore";
 import styles from "./bookCard.module.scss";
 
@@ -26,11 +26,13 @@ export default function BookCard({ book }: BookCardProps) {
         loading="lazy"
       />
       <div className={styles.card__content}>
-        <h3 className="p">{book.title}</h3>
-        <p className="p">Автор: {book.author}</p>
-        <p className="p">Издатель: {book.publisher}</p>
-        <p className="p">Жанр: {book.genre}</p>
-        <p className="p">Описание: {book.description || "Нет описания"}</p>
+        <h3 className="card__text">{book.title}</h3>
+        <p className="card__text">Автор: {book.author}</p>
+        <p className="card__text">Издатель: {book.publisher}</p>
+        <p className="card__text">Жанр: {book.genre}</p>
+        <p className="card__text">
+          Описание: {book.description || "Нет описания"}
+        </p>
         {(user?.role === "admin" || user?.role === "librarian") && (
           <div className={styles.card__actions}>
             <button className={styles.card__delete} onClick={handleDelete}>

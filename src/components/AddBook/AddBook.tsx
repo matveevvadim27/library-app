@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useBookStore } from "store/bookStore";
-import { bookSchema } from "../../schemas/BookSchema";
+import { bookSchema } from "../../schemas/bookSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";

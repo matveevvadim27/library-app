@@ -2,29 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "store/authStore";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import styles from "./login.module.scss";
-
-const loginSchema = z.object({
-  name: z.string().min(3, "Имя должно быть не менее 3 символов!"),
-  password: z.string().min(3, "Пароль должен быть не менее 3 символов!"),
-});
-
-type LoginFormData = z.infer<typeof loginSchema>;
+import { loginSchema, TLoginFormData } from "../../schemas/loginSchema";
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormData>({
+  const { register, handleSubmit } = useForm<TLoginFormData>({
     resolver: zodResolver(loginSchema),
   });
 
   const { login } = useAuthStore();
   const navigate = useNavigate();
 
-  const onSubmit = (data: LoginFormData) => {
+  const onSubmit = (data: TLoginFormData) => {
     const success = login(data.name, data.password);
     if (success) {
       navigate("/");

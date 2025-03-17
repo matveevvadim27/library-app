@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Book } from "../schemas/BookSchema";
+import { Book } from "../schemas/bookSchema";
 
 export interface IBooksStore {
   books: Book[];

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import styles from "./burger.module.scss";
 
-interface BurgerProps {
+interface IBurgerProps {
   isActive: boolean;
   onClick: () => void;
 }
 
-export default function Burger({ isActive, onClick }: BurgerProps) {
+export default function Burger({ isActive, onClick }: IBurgerProps) {
   useEffect(() => {
     if (isActive) {
       document.documentElement.classList.add("is-lock");
@@ -18,7 +18,7 @@ export default function Burger({ isActive, onClick }: BurgerProps) {
   return (
     <button
       className={`${styles.burger} visible-tablet-s ${
-        isActive ? "is-active" : ""
+        isActive ? styles.isActive : ""
       }`}
       onClick={onClick}
     >

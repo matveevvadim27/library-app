@@ -2,7 +2,7 @@ import AddUsers from "../../components/AddUsers/AddUsers";
 import EditUsers from "../../components/EditUsers/EditUsers";
 import UsersList from "../../components/UsersList/UsersList";
 import { useState } from "react";
-import { User } from "../../schemas/AuthSchema";
+import { User } from "../../schemas/authSchema";
 import styles from "./admin.module.scss";
 
 export default function Admin() {

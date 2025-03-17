@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { UserRole } from "../constants/UserRoles";
-import { User } from "../schemas/AuthSchema";
+import { User } from "../schemas/authSchema";
 import { toast } from "react-toastify";
 
 interface IUpdatedUser extends User {
@@ -58,22 +58,9 @@ export const useAuthStore = create<IAuthStore>((set, get) => ({
   updateUser: (updatedUser) => {
     set((state) => ({
       users: state.users.map((user) =>
-        user.name === updatedUser.oldName
-          ? {
-              name: updatedUser.name,
-              password: updatedUser.password,
-              role: updatedUser.role,
-            }
-          : user
+        user.name === updatedUser.oldName ? updatedUser : user
       ),
-      user:
-        state.user?.name === updatedUser.oldName
-          ? {
-              name: updatedUser.name,
-              password: updatedUser.password,
-              role: updatedUser.role,
-            }
-          : state.user,
+      user: state.user?.name === updatedUser.oldName ? updatedUser : state.user,
     }));
   },
 }));

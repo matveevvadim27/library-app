@@ -8,15 +8,15 @@
   align-items: center;
   flex-shrink: 0;
 }
-.burger.is-active .burger__line:first-child {
+.burger.isActive .burger__line:first-child {
   rotate: 45deg;
   transform-origin: 0;
   translate: 0.3em 0.1em;
 }
-.burger.is-active .burger__line:nth-child(2) {
+.burger.isActive .burger__line:nth-child(2) {
   rotate: -45deg;
 }
-.burger.is-active .burger__line:last-child {
+.burger.isActive .burger__line:last-child {
   width: 0;
 }
 .burger__line {
