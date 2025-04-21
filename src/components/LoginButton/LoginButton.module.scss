@@ -1,0 +1,16 @@
+@use "../../styles/helpers/" as *;
+
+.login {
+  @include fluid-text(18, 16);
+  font-weight: var(--fw-500);
+  padding: rem(10) rem(20);
+  border: none;
+  outline: 1px solid var(--color-accent);
+  border-radius: rem(10);
+  transition-duration: var(--td);
+
+  &:hover {
+    background-color: var(--color-accent);
+    transition-duration: var(--td);
+  }
+}

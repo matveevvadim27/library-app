@@ -1,45 +1,43 @@
-import { Routes, Route } from "react-router-dom";
-import Login from "../pages/Auth/Login";
-import RegisterPage from "../pages/Register/RegisterPage";
+import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home/Home";
-import Client from "../pages/Client/Client";
-import Edit from "../pages/Edit/Edit";
 import Admin from "../pages/Admin/Admin";
-import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
-import { UserRole } from "../constants/UserRoles";
+import Librarian from "../pages/Librarian/Librarian";
+import Library from "../pages/Library/Library";
+import Auth from "../pages/Auth/Auth";
+import ProtectRoute from "../utils/protectRoute";
+import { Roles } from "../constants/constants";
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route
-        path="/client"
-        element={
-          <PrivateRoute
-            allowedRoles={[UserRole.Client, UserRole.Librarian, UserRole.Admin]}
-          >
-            <Client />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/edit"
-        element={
-          <PrivateRoute allowedRoles={[UserRole.Librarian, UserRole.Admin]}>
-            <Edit />
-          </PrivateRoute>
-        }
-      />
-      <Route
         path="/admin"
         element={
-          <PrivateRoute allowedRoles={[UserRole.Admin]}>
+          <ProtectRoute allowedRoles={[Roles.ADMIN]}>
             <Admin />
-          </PrivateRoute>
+          </ProtectRoute>
         }
       />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<RegisterPage />} />
+      <Route
+        path="/librarian"
+        element={
+          <ProtectRoute allowedRoles={[Roles.ADMIN, Roles.LIBRARIAN]}>
+            <Librarian />
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/library"
+        element={
+          <ProtectRoute
+            allowedRoles={[Roles.ADMIN, Roles.LIBRARIAN, Roles.CLIENT]}
+          >
+            <Library />
+          </ProtectRoute>
+        }
+      />
+      <Route path="/auth" element={<Auth />} />
     </Routes>
   );
 }

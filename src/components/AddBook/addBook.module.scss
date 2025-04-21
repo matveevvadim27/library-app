@@ -26,7 +26,7 @@
     outline: rem(1) solid var(--color-base);
 
     &:focus {
-      outline: 3px solid var(--color-login);
+      outline: 3px solid var(--color-accent);
       border: none;
     }
   }
@@ -36,7 +36,7 @@
     font-weight: var(--fw-600);
     padding: rem(15) rem(20);
     color: var(--color-white);
-    background-color: var(--color-login);
+    background-color: var(--color-accent);
     border: none;
     border-radius: rem(10);
   }

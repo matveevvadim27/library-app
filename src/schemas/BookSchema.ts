@@ -1,16 +1,14 @@
 import { z } from "zod";
 
+export type BookFormData = z.infer<typeof bookSchema>;
+
 export const bookSchema = z.object({
   id: z.number().optional(),
-  title: z.string().nonempty("Название книги обязательно"),
-  author: z.string().nonempty("Автор обязателен"),
-  publisher: z.string().nonempty("Издатель обязателен"),
-  genre: z.string().nonempty("Жанр обязателен"),
-  description: z
+  name: z.string().nonempty("Название книги обязательно для заполнения!"),
+  author: z.string().nonempty("Автор книги обязателен для заполнения!"),
+  publisher: z
     .string()
-    .max(300, "Текст должен сожержать не больше 300 символов")
-    .optional(),
-  image: z.string().optional(),
+    .nonempty("Издательство книги обязательно для заполнения!"),
+  genre: z.string().nonempty("Жанр книги обязателен для заполнения!"),
+  description: z.string(),
 });
-
-export type Book = z.infer<typeof bookSchema>;

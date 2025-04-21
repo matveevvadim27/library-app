@@ -23,7 +23,7 @@ body {
 
 h1,
 .h1 {
-  @include fluid-text(50, 42);
+  @include fluid-text(40, 36);
   font-weight: var(--fw-800);
   line-height: var(--lh-12);
 }

@@ -1,13 +1,22 @@
 @use "../../styles/helpers/" as *;
 
 .books {
+  &__empty {
+    text-align: center;
+  }
   &__body {
     display: flex;
     flex-direction: column;
     gap: rem(20);
+    margin-top: rem(20);
   }
 
   &__title {
-    text-align: start;
+    text-align: center;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
   }
 }

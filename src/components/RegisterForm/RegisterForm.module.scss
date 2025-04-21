@@ -1,0 +1,64 @@
+@use "../../styles/helpers/" as *;
+
+.register {
+  width: 100%;
+  max-width: rem(400);
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+  border: rem(1) solid var(--color-border);
+  padding: rem(50);
+  border-radius: rem(30);
+  box-shadow: 0px 0px 6px 0px var(--color-border);
+
+  &__greeting {
+    text-align: center;
+  }
+
+  &__input {
+    padding: rem(10);
+    border: none;
+    outline: rem(1) solid var(--color-border);
+    border-radius: rem(5);
+
+    &:focus {
+      border: none;
+      outline: rem(1) solid var(--color-accent);
+      box-shadow: 0px 0px 6px 0px var(--color-border);
+    }
+  }
+
+  &__show {
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+  }
+
+  &__text {
+    text-align: start;
+  }
+
+  &__btn {
+    padding: rem(10);
+    border: none;
+    outline: rem(1) solid var(--color-accent);
+    border-radius: rem(5);
+    transition-duration: var(--td);
+
+    &:hover {
+      background-color: var(--color-accent);
+      color: var(--color-bg);
+      transition-duration: var(--td);
+      transform: scale(0.95);
+    }
+  }
+
+  &__toregister {
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+}

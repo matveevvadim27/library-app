@@ -1,33 +1,36 @@
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useBookStore } from "store/bookStore";
-import { bookSchema } from "../../schemas/bookSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useForm } from "react-hook-form";
-import styles from "./addBook.module.scss";
+import { useBookStore } from "../../store/booksStore";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { BookFormData, bookSchema } from "../../schemas/bookSchema";
+import { toast } from "react-toastify";
+import api from "../../api/api";
+import styles from "./AddBook.module.scss";
 
-type TBookFormData = z.infer<typeof bookSchema>;
-
-export default function AddBook() {
-  const { addBook } = useBookStore();
+const AddBookForm: React.FC = () => {
+  const { setBooks } = useBookStore();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TBookFormData>({ resolver: zodResolver(bookSchema) });
+  } = useForm<BookFormData>({ resolver: zodResolver(bookSchema) });
 
-  const onSubmit = (data: TBookFormData) => {
-    addBook(data);
-    toast.success("Книга успешно добавлена!");
+  const onSubmit = async (data: BookFormData) => {
+    try {
+      await api.post("/books", data);
+      const response = await api.get<any>("/books");
+      setBooks(response.data.data);
+      toast.success("Книга успешно добавлена!");
+    } catch (error) {
+      toast.error("Ошибка добавления книги!");
+    }
   };
   return (
     <form className={styles.edit__form} onSubmit={handleSubmit(onSubmit)}>
       <label className={styles.edit__label}>
         Название:
-        <input {...register("title")} className={styles.edit__input} />
-        {errors.title && <p className="error">{errors.title.message}</p>}
+        <input {...register("name")} className={styles.edit__input} />
+        {errors.name && <p className="error">{errors.name.message}</p>}
       </label>
 
       <label className={styles.edit__label}>
@@ -43,15 +46,11 @@ export default function AddBook() {
           <p className="error">{errors.publisher.message}</p>
         )}
       </label>
+
       <label className={styles.edit__label}>
         Жанр:
         <input {...register("genre")} className={styles.edit__input} />
         {errors.genre && <p className="error">{errors.genre.message}</p>}
-      </label>
-      <label className={styles.edit__label}>
-        Картинка (URL):
-        <input {...register("image")} className={styles.edit__input} />
-        {errors.image && <p className="error">{errors.image.message}</p>}
       </label>
 
       <label className={styles.edit__label}>
@@ -66,4 +65,6 @@ export default function AddBook() {
       </button>
     </form>
   );
-}
+};
+
+export default AddBookForm;

@@ -1,27 +1,24 @@
-import AddUsers from "../../components/AddUsers/AddUsers";
-import EditUsers from "../../components/EditUsers/EditUsers";
-import UsersList from "../../components/UsersList/UsersList";
+import styles from "./Admin.module.scss";
 import { useState } from "react";
-import { User } from "../../schemas/authSchema";
-import styles from "./admin.module.scss";
+import UsersList from "../../components/UsersList/UsersList";
+import AddUsers from "../../components/AddUsers/AddUsers";
 
 export default function Admin() {
-  const [editUser, setEditUser] = useState<User | null>(null);
+  const [add, setAdd] = useState<boolean>(false);
 
+  const onClick = () => {
+    setAdd((prev) => (prev == false ? true : false));
+  };
   return (
-    <main className={styles.admin}>
-      <section className={`${styles.admin__section} container`}>
-        <h1 className={styles.admin__title}>
-          Добро пожаловать в управление библиотекой.
-        </h1>
-        <div className={styles.admin__forms}>
-          <AddUsers />
-          {editUser && (
-            <EditUsers editUser={editUser} setEditUser={setEditUser} />
-          )}
-        </div>
-        <UsersList setEditUser={setEditUser} />
-      </section>
-    </main>
+    <section className={`${styles.admin} container`}>
+      <h1 className={styles.admin__title}>
+        Добро пожаловать в панель администратора!
+      </h1>
+      <button onClick={onClick} className={styles.admin__btn}>
+        Добавить
+      </button>
+      {add && <AddUsers />}
+      <UsersList />
+    </section>
   );
 }

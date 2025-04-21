@@ -1,45 +1,44 @@
-import { Dispatch, SetStateAction } from "react";
-import { toast } from "react-toastify";
-import { UserRole } from "../../constants/UserRoles";
-import { useAuthStore } from "store/authStore";
-import { useForm } from "react-hook-form";
+import styles from "./EditUsers.module.scss";
+import { IUser } from "../../store/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userSchema, User } from "../../schemas/authSchema";
-import styles from "./editUsers.module.scss";
+import { useForm } from "react-hook-form";
+import { editSchema, editFormData } from "../../schemas/editSchema";
+import api from "../../api/api";
+import { toast } from "react-toastify";
 
-interface IAdminProps {
-  editUser: User;
-  setEditUser: Dispatch<SetStateAction<User | null>>;
+interface IEditUserFormProps {
+  user: IUser;
+  onClose: () => void;
 }
 
-export default function EditUsers({ editUser, setEditUser }: IAdminProps) {
+const EditUser: React.FC<IEditUserFormProps> = ({ user, onClose }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>({
-    resolver: zodResolver(userSchema),
-    defaultValues: editUser,
+  } = useForm<editFormData>({
+    resolver: zodResolver(editSchema),
+    defaultValues: user,
   });
-  const { updateUser } = useAuthStore();
-
-  const onSubmit = (data: User) => {
-    updateUser({ ...data, oldName: editUser.name });
-    setEditUser(null);
-    toast.success("Пользователь успешно изменен!");
+  const onSubmit = async (data: editFormData) => {
+    try {
+      await api.put(`/users/${user.id}`, data);
+      toast.success("Пароль успешно изменен!");
+      onClose();
+    } catch {
+      toast.error("Ошибка редактирования!");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.change}>
-      <h3 className={styles.change__title}>Редактировать: {editUser.name}</h3>
       <label className={styles.change__label}>
-        Имя:
-        <input
-          className={styles.change__input}
-          type="text"
-          {...register("name")}
-        />
-        {errors.name && <p className="error">{errors.name.message}</p>}
+        Логин:
+        <input className={styles.change__input} type="text" disabled />
+      </label>
+      <label className={styles.change__label}>
+        Email:
+        <input className={styles.change__input} type="text" disabled />
       </label>
       <label className={styles.change__label}>
         Пароль:
@@ -50,24 +49,13 @@ export default function EditUsers({ editUser, setEditUser }: IAdminProps) {
         />
         {errors.password && <p className="error">{errors.password.message}</p>}
       </label>
-      <label className={styles.change__label}>
-        Роль:
-        <select className={styles.change__input} {...register("role")}>
-          <option value={UserRole.Client}>Клиент</option>
-          <option value={UserRole.Librarian}>Библиотекарь</option>
-          <option value={UserRole.Admin}>Администратор</option>
-        </select>
-      </label>
       <button className={styles.change__save} type="submit">
         Сохранить
       </button>
-      <button
-        className={styles.change__cancel}
-        type="button"
-        onClick={() => setEditUser(null)}
-      >
+      <button className={styles.change__cancel} type="button" onClick={onClose}>
         Отмена
       </button>
     </form>
   );
-}
+};
+export default EditUser;

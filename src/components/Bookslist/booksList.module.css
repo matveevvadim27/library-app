@@ -1,8 +1,0 @@
-.books__body {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-.books__title {
-  text-align: start;
-}/*# sourceMappingURL=booksList.module.css.map */

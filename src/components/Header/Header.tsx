@@ -4,10 +4,11 @@ import Navbar from "../Navbar/Navbar";
 import Burger from "../Burger/Burger";
 import logo from "../../assets/icons/logo.png";
 import { useAuthStore } from "store/authStore";
-import styles from "./header.module.scss";
+import styles from "./Header.module.scss";
+import LoginButton from "../LoginButton/LoginButton";
 
 export default function Header() {
-  const { user, logout } = useAuthStore();
+  const { logout } = useAuthStore();
   const [isActive, setIsActive] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -34,15 +35,7 @@ export default function Header() {
           onClick={closeOverlay}
         >
           <Navbar />
-          {user ? (
-            <button className={styles.header__button} onClick={handleLogout}>
-              Выйти ({user.name})
-            </button>
-          ) : (
-            <Link className={styles.header__login} to="/login">
-              Вход
-            </Link>
-          )}
+          <LoginButton />
         </div>
         <Burger isActive={isActive} onClick={() => setIsActive(!isActive)} />
       </div>

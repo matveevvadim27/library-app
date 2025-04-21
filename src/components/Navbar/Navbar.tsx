@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./navbar.module.scss";
+import styles from "./Navbar.module.scss";
 
 export default function Navbar() {
   return (
@@ -11,12 +11,12 @@ export default function Navbar() {
           </Link>
         </li>
         <li className={styles.nav__item}>
-          <Link className={styles.nav__link} to="/client">
+          <Link className={styles.nav__link} to="/library">
             Книги
           </Link>
         </li>
         <li className={styles.nav__item}>
-          <Link className={styles.nav__link} to="/edit">
+          <Link className={styles.nav__link} to="/librarian">
             Редактировать
           </Link>
         </li>

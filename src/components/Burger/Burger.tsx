@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import styles from "./burger.module.scss";
+import styles from "./Burger.module.scss";
 
 interface IBurgerProps {
   isActive: boolean;

@@ -1,0 +1,40 @@
+@use "../../styles/helpers/" as *;
+
+.library {
+  padding: rem(40);
+  &__title {
+    text-align: center;
+  }
+
+  &__label {
+    @include fluid-text(20, 18);
+    font-weight: var(--fw-600);
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+  }
+
+  &__input {
+    @include fluid-text(18, 16);
+    font-weight: var(--fw-400);
+    padding: rem(10);
+    border-radius: rem(10);
+    outline: rem(1) solid var(--color-border);
+    border: none;
+
+    &:focus {
+      outline: rem(1) solid var(--color-accent);
+    }
+  }
+
+  &__empty {
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+  }
+}

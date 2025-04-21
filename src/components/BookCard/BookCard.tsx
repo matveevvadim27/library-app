@@ -1,41 +1,43 @@
-import { useBookStore } from "store/bookStore";
-import { Book } from "../../schemas/bookSchema";
+import api from "../../api/api";
+import { BookFormData } from "../../schemas/bookSchema";
 import { useAuthStore } from "store/authStore";
-import styles from "./bookCard.module.scss";
+import styles from "./BookCard.module.scss";
+import { toast } from "react-toastify";
+import { useBookStore } from "store/booksStore";
 
 interface BookCardProps {
-  book: Book;
+  book: BookFormData;
 }
 
 export default function BookCard({ book }: BookCardProps) {
-  const { user } = useAuthStore();
-  const { removeBook } = useBookStore();
+  const { currentUser } = useAuthStore();
+  const { books, setBooks } = useBookStore();
 
-  const handleDelete = () => {
-    if (!book || book.id === undefined) return;
-    if (window.confirm(`Удалить книгу "${book.title}"?`)) {
-      removeBook(book.id);
+  const handleDeleteBook = async (book: number) => {
+    try {
+      await api.delete(`/books/${book}`);
+      setBooks((prev) => prev.filter((u) => u.id !== book));
+      toast.success("Книга успешно удалена!");
+    } catch (err) {
+      toast.error("Ошибка при удалении книги!");
     }
   };
   return (
     <li className={styles.card}>
-      <img
-        className={styles.card__image}
-        src={book.image || "./placeholder.png"}
-        alt={book.title}
-        loading="lazy"
-      />
       <div className={styles.card__content}>
-        <h3 className="card__text">{book.title}</h3>
+        <h3 className="card__text">{book.name}</h3>
         <p className="card__text">Автор: {book.author}</p>
         <p className="card__text">Издатель: {book.publisher}</p>
         <p className="card__text">Жанр: {book.genre}</p>
         <p className="card__text">
           Описание: {book.description || "Нет описания"}
         </p>
-        {(user?.role === "admin" || user?.role === "librarian") && (
+        {currentUser!.role <= 2 && (
           <div className={styles.card__actions}>
-            <button className={styles.card__delete} onClick={handleDelete}>
+            <button
+              className={styles.card__delete}
+              onClick={() => handleDeleteBook(book.id!)}
+            >
               Удалить
             </button>
           </div>

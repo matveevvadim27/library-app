@@ -1,7 +1,0 @@
-.footer {
-  font-size: clamp(1rem, 0.953125rem + 0.1923076923vw, 1.125rem);
-  font-weight: var(--fw-600);
-  padding: 1.25rem;
-  background-color: var(--color-footer);
-  text-align: center;
-}/*# sourceMappingURL=footer.module.css.map */
