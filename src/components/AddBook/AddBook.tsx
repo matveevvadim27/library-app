@@ -3,7 +3,7 @@ import { useBookStore } from "../../store/booksStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BookFormData, bookSchema } from "../../schemas/bookSchema";
 import { toast } from "react-toastify";
-import api from "../../api/api";
+import api from "../../api/axios";
 import styles from "./AddBook.module.scss";
 
 const AddBookForm: React.FC = () => {

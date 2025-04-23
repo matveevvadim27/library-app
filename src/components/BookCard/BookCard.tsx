@@ -1,4 +1,4 @@
-import api from "../../api/api";
+import api from "../../api/axios";
 import { BookFormData } from "../../schemas/bookSchema";
 import { useAuthStore } from "store/authStore";
 import styles from "./BookCard.module.scss";

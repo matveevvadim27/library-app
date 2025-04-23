@@ -4,10 +4,10 @@ import Footer from "./components/Footer/Footer";
 import RoutesApp from "./routes/routes";
 import { useEffect } from "react";
 import { useAuthStore } from "./store/authStore";
-import { fetchCurrentUser } from "./api/api";
+import { fetchCurrentUser } from "./api/axios";
 import Spinner from "./components/Spinner/Spinner";
-import { setAuthToken } from "./api/api";
-import { token } from "./constants/constants";
+import { setAuthToken } from "./api/axios";
+import { token } from "./constants/role";
 
 export default function App() {
   const { setUser, setLoading, isLoading } = useAuthStore();

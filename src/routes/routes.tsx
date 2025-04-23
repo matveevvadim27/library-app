@@ -5,7 +5,7 @@ import Librarian from "../pages/Librarian/Librarian";
 import Library from "../pages/Library/Library";
 import Auth from "../pages/Auth/Auth";
 import ProtectRoute from "../utils/protectRoute";
-import { Roles } from "../constants/constants";
+import { Roles } from "../constants/role";
 
 export default function AppRoutes() {
   return (

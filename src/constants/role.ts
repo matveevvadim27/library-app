@@ -4,4 +4,4 @@ export enum Roles {
   ADMIN = 1,
 }
 
-export const token = localStorage.getItem("token");
+export const token = () => localStorage.getItem("token");

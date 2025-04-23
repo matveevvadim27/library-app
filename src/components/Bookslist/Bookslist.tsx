@@ -2,9 +2,9 @@ import { useBookStore } from "store/booksStore";
 import BookCard from "../BookCard/BookCard";
 import styles from "./BooksList.module.scss";
 import { useEffect, useState } from "react";
-import { setAuthToken } from "../../api/api";
-import { token } from "../../constants/constants";
-import api from "../../api/api";
+import { setAuthToken } from "../../api/axios";
+import { token } from "../../constants/role";
+import api from "../../api/axios";
 
 export default function BookList() {
   const { books, setBooks } = useBookStore();

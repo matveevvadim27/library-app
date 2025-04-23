@@ -6,8 +6,8 @@ import { loginSchema, loginFormData } from "../../schemas/loginSchema";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
-import { setAuthToken } from "../../api/api";
-import api from "../../api/api";
+import { setAuthToken } from "../../api/axios";
+import api from "../../api/axios";
 import styles from "./LoginForm.module.scss";
 
 const LoginForm: React.FC<TToggle> = ({ toggle }) => {

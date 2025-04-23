@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuthStore } from "../../store/authStore";
 import { toast } from "react-toastify";
-import api from "../../api/api";
+import api from "../../api/axios";
 import styles from "./AddUsers.module.scss";
 
 export default function AddUsers() {

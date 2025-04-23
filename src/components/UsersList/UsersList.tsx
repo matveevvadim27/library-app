@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { IUser } from "../../store/authStore";
-import { setAuthToken } from "../../api/api";
+import { setAuthToken } from "../../api/axios";
 import { useAuthStore } from "../../store/authStore";
-import { token } from "../../constants/constants";
+import { token } from "../../constants/role";
 import { toast } from "react-toastify";
-import api from "../../api/api";
+import api from "../../api/axios";
 import styles from "./UsersList.module.scss";
 import EditUsers from "components/EditUsers/EditUsers";
 

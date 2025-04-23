@@ -3,7 +3,7 @@ import { IUser } from "../../store/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { editSchema, editFormData } from "../../schemas/editSchema";
-import api from "../../api/api";
+import api from "../../api/axios";
 import { toast } from "react-toastify";
 
 interface IEditUserFormProps {
