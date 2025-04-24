@@ -1,3 +1,3 @@
-const token = () => localStorage.getItem("token");
+const getToken = () => localStorage.getItem("token");
 
-export default token;
+export default getToken;

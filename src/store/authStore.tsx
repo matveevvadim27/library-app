@@ -12,6 +12,8 @@ interface IUserState {
   currentUser: IUser | null;
   users: IUser[];
   isLoading: boolean;
+  token: string | null;
+  setToken: (token: string | null) => void;
   setUser: (user: IUser) => void;
   setUsers: (users: IUser[] | ((prev: IUser[]) => IUser[])) => void;
   setLoading: (isLoading: boolean) => void;
@@ -24,6 +26,12 @@ export const useAuthStore = create<IUserState>((set) => ({
   users: [],
 
   isLoading: true,
+
+  token: null,
+
+  setToken: (token) => {
+    set({ token: token });
+  },
 
   setUsers: (users) =>
     set((state) => ({
