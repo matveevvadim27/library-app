@@ -2,9 +2,6 @@ import { useBookStore } from "store/booksStore";
 import BookCard from "../BookCard/BookCard";
 import styles from "./BooksList.module.scss";
 import { useEffect, useState } from "react";
-import { setAuthToken } from "../../api/axios";
-import { token } from "../../constants/role";
-import api from "../../api/axios";
 
 export default function BookList() {
   const { books, setBooks } = useBookStore();
@@ -12,19 +9,7 @@ export default function BookList() {
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      setLoading(true);
-      setError("");
-      setAuthToken(token!);
-      try {
-        const response = await api.get<any>("/books");
-        setBooks(response.data.data);
-      } catch (err) {
-        setError("Не удалось загрузить списо книг!");
-      } finally {
-        setLoading(false);
-      }
-    };
+    const fetchUsers = async () => {};
 
     fetchUsers();
   }, [setBooks]);

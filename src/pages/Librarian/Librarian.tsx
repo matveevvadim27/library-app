@@ -1,4 +1,4 @@
-import AddBook from "../../components/AddBookForm/AddBook";
+import AddBookForm from "../../components/Shared/Forms/AddBookForm/AddBookForm";
 import styles from "./Librarian.module.scss";
 
 export default function Librarian() {
@@ -7,7 +7,7 @@ export default function Librarian() {
       <h1 className={styles.librarian__title}>
         Добро пожаловать в панель библиотекаря!
       </h1>
-      <AddBook />
+      <AddBookForm />
     </section>
   );
 }

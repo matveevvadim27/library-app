@@ -3,8 +3,6 @@ import { IUser } from "../../../../store/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { editSchema, editFormData } from "../../../../schemas/editSchema";
-import api from "../../../../api/axios";
-import { toast } from "react-toastify";
 
 interface IEditUserFormProps {
   user: IUser;
@@ -20,15 +18,7 @@ const EditUser: React.FC<IEditUserFormProps> = ({ user, onClose }) => {
     resolver: zodResolver(editSchema),
     defaultValues: user,
   });
-  const onSubmit = async (data: editFormData) => {
-    try {
-      await api.put(`/users/${user.id}`, data);
-      toast.success("Пароль успешно изменен!");
-      onClose();
-    } catch {
-      toast.error("Ошибка редактирования!");
-    }
-  };
+  const onSubmit = async (data: editFormData) => {};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.change}>

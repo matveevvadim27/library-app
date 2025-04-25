@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { TToggle } from "../../types/toggleFormType";
+import { TToggle } from "../../../../types/toggleFormType";
 import { motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, loginFormData } from "../../schemas/loginSchema";
+import { loginSchema, loginFormData } from "../../../../schemas/loginSchema";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/authStore";
-import { setAuthToken } from "../../api/axios";
-import api from "../../api/axios";
+import { useAuthStore } from "../../../../store/authStore";
 import styles from "./LoginForm.module.scss";
 
 const LoginForm: React.FC<TToggle> = ({ toggle }) => {
@@ -21,19 +19,7 @@ const LoginForm: React.FC<TToggle> = ({ toggle }) => {
     formState: { errors },
   } = useForm<loginFormData>({ resolver: zodResolver(loginSchema) });
 
-  const onSubmit = async (data: loginFormData) => {
-    try {
-      const loginResponse = await api.post<any>("/login", data);
-      const token = loginResponse.data.token;
-      localStorage.setItem("token", token);
-      setAuthToken(token);
-      const userResponse = await api.get<any>("/me");
-      setUser(userResponse.data.data);
-      navigate("/");
-    } catch (error) {
-      console.error("Ошибка авторизации:", error);
-    }
-  };
+  const onSubmit = async (data: loginFormData) => {};
 
   return (
     <motion.div

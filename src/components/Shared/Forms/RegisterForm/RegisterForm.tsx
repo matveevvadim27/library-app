@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { TToggle } from "../../types/toggleFormType";
+import { TToggle } from "../../../../types/toggleFormType";
 import { motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema, RegisterFormData } from "../../schemas/registerSchema";
+import {
+  registerSchema,
+  RegisterFormData,
+} from "../../../../schemas/registerSchema";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import api from "../../api/axios";
 import styles from "./RegisterForm.module.scss";
 
 const RegisterForm: React.FC<TToggle> = ({ toggle }) => {
@@ -17,14 +18,7 @@ const RegisterForm: React.FC<TToggle> = ({ toggle }) => {
     formState: { errors },
   } = useForm<RegisterFormData>({ resolver: zodResolver(registerSchema) });
 
-  const onSubmit = async (data: RegisterFormData) => {
-    try {
-      await api.post("/register", data);
-      toast.success("Регистрация прошла успешно!");
-    } catch {
-      toast.error("Ошибка регистрации!");
-    }
-  };
+  const onSubmit = async (data: RegisterFormData) => {};
 
   return (
     <motion.div

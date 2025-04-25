@@ -5,7 +5,7 @@ import Burger from "../../UI/Buttons/BurgerButton/Burger";
 import logo from "../../assets/icons/logo.png";
 import { useAuthStore } from "store/authStore";
 import styles from "./Header.module.scss";
-import LoginButton from "../LoginButton/LoginButton";
+import LoginButton from "../../UI/Buttons/LoginButton/LoginButton";
 
 export default function Header() {
   const { logout } = useAuthStore();

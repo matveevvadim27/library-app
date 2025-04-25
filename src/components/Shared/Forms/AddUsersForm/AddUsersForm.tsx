@@ -1,9 +1,7 @@
-import { AddFormData, addSchema } from "../../schemas/addSchema";
+import { AddFormData, addSchema } from "../../../../schemas/addSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuthStore } from "../../store/authStore";
-import { toast } from "react-toastify";
-import api from "../../api/axios";
+import { useAuthStore } from "../../../../store/authStore";
 import styles from "./AddUsers.module.scss";
 
 export default function AddUsers() {
@@ -17,16 +15,7 @@ export default function AddUsers() {
     resolver: zodResolver(addSchema),
   });
 
-  const onSubmit = async (data: AddFormData) => {
-    try {
-      await api.post("/register", data);
-      const response = await api.get<any>("/users");
-      setUsers(response.data.data);
-      toast.success("Пользователь успешно добавлен!");
-    } catch (error) {
-      toast.error("Ошибка регистрации!");
-    }
-  };
+  const onSubmit = async (data: AddFormData) => {};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.add}>

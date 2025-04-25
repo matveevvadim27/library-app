@@ -1,6 +1,6 @@
 import styles from "./Auth.module.scss";
-import LoginForm from "../../components/LoginForm/LoginForm";
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import LoginForm from "../../components/Shared/Forms/LoginForm/LoginForm";
+import RegisterForm from "../../components/Shared/Forms/RegisterForm/RegisterForm";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 

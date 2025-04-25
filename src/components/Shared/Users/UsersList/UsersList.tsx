@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
-import { IUser } from "../../store/authStore";
-import { setAuthToken } from "../../api/axios";
-import { useAuthStore } from "../../store/authStore";
-import { token } from "../../constants/role";
-import { toast } from "react-toastify";
-import api from "../../api/axios";
+import { IUser, useAuthStore } from "../../../../store/authStore";
+
 import styles from "./UsersList.module.scss";
-import EditUsers from "components/Shared/Forms/EditUsersForm/EditUsers";
+import EditUsers from "components/Shared/Forms/EditUsersForm/EditUsersForm";
 
 export default function UsersList() {
   const [editingUser, setEditingUser] = useState<IUser | null>(null);
@@ -18,15 +14,6 @@ export default function UsersList() {
     const fetchUsers = async () => {
       setLoading(true);
       setError("");
-      setAuthToken(token);
-      try {
-        const response = await api.get<any>("/users");
-        setUsers(response.data.data);
-      } catch (err) {
-        setError("Не удалось загрузить пользователей");
-      } finally {
-        setLoading(false);
-      }
     };
 
     fetchUsers();
@@ -35,15 +22,7 @@ export default function UsersList() {
   if (loading) return <p className="loading">Загрузка пользователей...</p>;
   if (error) return <p className="loading">{error}</p>;
 
-  const handleDeleteUser = async (user: number) => {
-    try {
-      await api.delete(`/users/${user}`);
-      toast.success("Пользователь успешно удален!");
-      setUsers((prev) => prev.filter((u) => u.id !== user));
-    } catch (err) {
-      toast.error("Ошибка удаления пользователя!");
-    }
-  };
+  const handleDeleteUser = async (user: number) => {};
 
   return (
     <div className={styles.users}>

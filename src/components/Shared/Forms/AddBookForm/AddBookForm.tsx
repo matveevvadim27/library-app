@@ -1,9 +1,7 @@
 import { useForm } from "react-hook-form";
-import { useBookStore } from "../../store/booksStore";
+import { useBookStore } from "../../../../store/booksStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { BookFormData, bookSchema } from "../../schemas/bookSchema";
-import { toast } from "react-toastify";
-import api from "../../api/axios";
+import { BookFormData, bookSchema } from "../../../../schemas/bookSchema";
 import styles from "./AddBook.module.scss";
 
 const AddBookForm: React.FC = () => {
@@ -15,16 +13,7 @@ const AddBookForm: React.FC = () => {
     formState: { errors },
   } = useForm<BookFormData>({ resolver: zodResolver(bookSchema) });
 
-  const onSubmit = async (data: BookFormData) => {
-    try {
-      await api.post("/books", data);
-      const response = await api.get<any>("/books");
-      setBooks(response.data.data);
-      toast.success("Книга успешно добавлена!");
-    } catch (error) {
-      toast.error("Ошибка добавления книги!");
-    }
-  };
+  const onSubmit = async (data: BookFormData) => {};
   return (
     <form className={styles.edit__form} onSubmit={handleSubmit(onSubmit)}>
       <label className={styles.edit__label}>

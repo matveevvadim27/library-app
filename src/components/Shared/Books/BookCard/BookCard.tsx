@@ -1,8 +1,6 @@
-import api from "../../api/axios";
-import { BookFormData } from "../../schemas/bookSchema";
+import { BookFormData } from "../../../../schemas/bookSchema";
 import { useAuthStore } from "store/authStore";
 import styles from "./BookCard.module.scss";
-import { toast } from "react-toastify";
 import { useBookStore } from "store/booksStore";
 
 interface BookCardProps {
@@ -13,15 +11,7 @@ export default function BookCard({ book }: BookCardProps) {
   const { currentUser } = useAuthStore();
   const { books, setBooks } = useBookStore();
 
-  const handleDeleteBook = async (book: number) => {
-    try {
-      await api.delete(`/books/${book}`);
-      setBooks((prev) => prev.filter((u) => u.id !== book));
-      toast.success("Книга успешно удалена!");
-    } catch (err) {
-      toast.error("Ошибка при удалении книги!");
-    }
-  };
+  const handleDeleteBook = async (book: number) => {};
   return (
     <li className={styles.card}>
       <div className={styles.card__content}>

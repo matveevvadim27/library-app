@@ -1,7 +1,7 @@
 import styles from "./Admin.module.scss";
 import { useState } from "react";
-import UsersList from "../../components/UsersList/UsersList";
-import AddUsers from "../../components/AddUsersForm/AddUsers";
+import UsersList from "../../components/Shared/Users/UsersList/UsersList";
+import AddUsersForm from "../../components/Shared/Forms/AddUsersForm/AddUsersForm";
 
 export default function Admin() {
   const [add, setAdd] = useState<boolean>(false);
@@ -17,7 +17,7 @@ export default function Admin() {
       <button onClick={onClick} className={styles.admin__btn}>
         Добавить
       </button>
-      {add && <AddUsers />}
+      {add && <AddUsersForm />}
       <UsersList />
     </section>
   );

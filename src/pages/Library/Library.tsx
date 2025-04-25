@@ -1,14 +1,11 @@
 import { useBookStore } from "../../store/booksStore";
 import styles from "./Library.module.scss";
-import { filterBooks } from "../../utils/filterBooks";
 import { useState } from "react";
-import BookCard from "components/BookCard/BookCard";
-import BookList from "components/BooksList/Bookslist";
+import BookList from "../../components/Shared/Books/BooksList/Bookslist";
 
 export default function Library() {
   const { books } = useBookStore();
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const filteredBooks = filterBooks(books, searchQuery);
 
   return (
     <main className={styles.library}>
@@ -24,16 +21,6 @@ export default function Library() {
             className={styles.library__input}
           />
         </label>
-        {searchQuery.trim() !== "" && filteredBooks.length > 0 && (
-          <h2 className={styles.library__empty}>Найденные книги</h2>
-        )}
-        <ul className={styles.library__list}>
-          {filteredBooks.length > 0 ? (
-            filteredBooks.map((book) => <BookCard key={book.id} book={book} />)
-          ) : searchQuery.trim() !== "" ? (
-            <p>Ничего не найдено</p>
-          ) : null}
-        </ul>
         <BookList />
       </section>
     </main>
