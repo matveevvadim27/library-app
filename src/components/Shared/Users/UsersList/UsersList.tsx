@@ -6,7 +6,7 @@ import { token } from "../../constants/role";
 import { toast } from "react-toastify";
 import api from "../../api/axios";
 import styles from "./UsersList.module.scss";
-import EditUsers from "components/EditUsers/EditUsers";
+import EditUsers from "components/Shared/Forms/EditUsersForm/EditUsers";
 
 export default function UsersList() {
   const [editingUser, setEditingUser] = useState<IUser | null>(null);

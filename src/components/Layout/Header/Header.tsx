@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Navbar from "../Navbar/Navbar";
-import Burger from "../Burger/Burger";
+import Navbar from "../../Shared/Bars/Navbar/Navbar";
+import Burger from "../../UI/Buttons/BurgerButton/Burger";
 import logo from "../../assets/icons/logo.png";
 import { useAuthStore } from "store/authStore";
 import styles from "./Header.module.scss";

@@ -1,4 +1,4 @@
-import AddBook from "../../components/AddBook/AddBook";
+import AddBook from "../../components/AddBookForm/AddBook";
 import styles from "./Librarian.module.scss";
 
 export default function Librarian() {

@@ -1,7 +1,7 @@
 import styles from "./Admin.module.scss";
 import { useState } from "react";
 import UsersList from "../../components/UsersList/UsersList";
-import AddUsers from "../../components/AddUsers/AddUsers";
+import AddUsers from "../../components/AddUsersForm/AddUsers";
 
 export default function Admin() {
   const [add, setAdd] = useState<boolean>(false);

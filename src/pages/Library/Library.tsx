@@ -3,7 +3,7 @@ import styles from "./Library.module.scss";
 import { filterBooks } from "../../utils/filterBooks";
 import { useState } from "react";
 import BookCard from "components/BookCard/BookCard";
-import BookList from "components/Bookslist/Bookslist";
+import BookList from "components/BooksList/Bookslist";
 
 export default function Library() {
   const { books } = useBookStore();
