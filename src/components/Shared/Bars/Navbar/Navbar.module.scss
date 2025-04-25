@@ -1,4 +1,4 @@
-@use "../../styles/helpers/" as *;
+@use "../../../../styles/helpers/" as *;
 
 .nav {
   @include fluid-text(18, 16);
