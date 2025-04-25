@@ -1,8 +1,16 @@
 import API_URL from "./api";
-import { token } from "./role";
 
 export interface ILoginType {
   token: string;
+}
+
+export interface IRegisterType {
+  data: {
+    id: number;
+    name: string;
+    email: string;
+    role: number | null;
+  };
 }
 
 const AUTH_ROUTES = {

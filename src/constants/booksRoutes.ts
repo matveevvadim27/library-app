@@ -1,5 +1,25 @@
 import API_URL from "./api";
 
+export interface IBookBase {
+  id: number;
+  name: string;
+  author: string;
+  slug: string;
+  genre: string;
+  publiser: string;
+  description: string;
+}
+
+export interface IBook extends IBookBase {
+  user_id: number;
+  reserved_at: string;
+  take_at: string;
+}
+
+export interface IGetBooks {
+  data: IBook[];
+}
+
 const BOOKS_ROUTES = {
   GET_BOOKS: `${API_URL}/books`,
   POST_BOOK: `${API_URL}/books`,

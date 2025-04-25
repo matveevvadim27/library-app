@@ -1,5 +1,20 @@
 import API_URL from "./api";
 
+interface IUser {
+  id: number;
+  name: string;
+  email: string;
+  role: number | null;
+}
+
+export interface IGetMe {
+  data: IUser;
+}
+
+export interface IGetUsers {
+  data: IUser[];
+}
+
 const USERS_ROUTES = {
   GET_ME: `${API_URL}/me`,
   GET_USERS: `${API_URL}/users`,
