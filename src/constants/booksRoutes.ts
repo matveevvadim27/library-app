@@ -6,7 +6,7 @@ export interface IBookBase {
   author: string;
   slug: string;
   genre: string;
-  publiser: string;
+  publisher: string;
   description: string;
 }
 
@@ -24,6 +24,7 @@ const BOOKS_ROUTES = {
   GET_BOOKS: `${API_URL}/books`,
   POST_BOOK: `${API_URL}/books`,
   DELETE_BOOK: (id: number) => `${API_URL}/books/${id}`,
+  SEARCH_BOOK: `${API_URL}/books/search`,
   PUT_RESERVE_BOOK: (slug: string, id: number) =>
     `${API_URL}/books/${slug}/reserve/${id}`,
   PUT_FREE_BOOK: (slug: string) => `${API_URL}/books/free/${slug}`,

@@ -26,6 +26,17 @@
     color: var(--colot-author);
   }
 
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: rem(20);
+  }
+
+  &__reservation {
+    padding: rem(5) rem(10);
+    border-radius: rem(5);
+  }
+
   &__delete {
     padding: rem(5) rem(10);
     background-color: var(--color-delete);

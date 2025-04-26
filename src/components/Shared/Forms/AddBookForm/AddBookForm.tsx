@@ -1,21 +1,25 @@
 import { useForm } from "react-hook-form";
-import { useBookStore } from "../../../../store/booksStore";
+import { useBookStore } from "../../../../store/useBooksStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { BookFormData, bookSchema } from "../../../../schemas/bookSchema";
+import { bookFormData, bookSchema } from "../../../../schemas/bookSchema";
 import styles from "./AddBook.module.scss";
+import { useBooks } from "hooks/useBooks";
 
 const AddBookForm: React.FC = () => {
   const { setBooks } = useBookStore();
+  const { postBook } = useBooks();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<BookFormData>({ resolver: zodResolver(bookSchema) });
+  } = useForm<bookFormData>({ resolver: zodResolver(bookSchema) });
 
-  const onSubmit = async (data: BookFormData) => {};
+  const handleAddBook = async (data: bookFormData) => {
+    await postBook(data);
+  };
   return (
-    <form className={styles.edit__form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.edit__form} onSubmit={handleSubmit(handleAddBook)}>
       <label className={styles.edit__label}>
         Название:
         <input {...register("name")} className={styles.edit__input} />

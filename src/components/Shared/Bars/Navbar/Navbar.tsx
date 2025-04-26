@@ -17,7 +17,7 @@ export default function Navbar() {
         </li>
         <li className={styles.nav__item}>
           <Link className={styles.nav__link} to="/librarian">
-            Редактировать
+            Библиотекарь
           </Link>
         </li>
         <li className={styles.nav__item}>

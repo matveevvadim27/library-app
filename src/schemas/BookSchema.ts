@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export type BookFormData = z.infer<typeof bookSchema>;
+export type bookFormData = z.infer<typeof bookSchema>;
 
 export const bookSchema = z.object({
   id: z.number().optional(),

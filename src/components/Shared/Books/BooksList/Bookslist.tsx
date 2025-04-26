@@ -1,21 +1,16 @@
-import { useBookStore } from "store/booksStore";
+import { useBookStore } from "store/useBooksStore";
 import BookCard from "../BookCard/BookCard";
 import styles from "./BooksList.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useBooks } from "hooks/useBooks";
 
-export default function BookList() {
+export default function BooksList() {
+  const { getBooks } = useBooks();
   const { books, setBooks } = useBookStore();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    const fetchUsers = async () => {};
-
-    fetchUsers();
+    getBooks();
   }, [setBooks]);
-
-  if (loading) return <p className="loading">Загрузка книг...</p>;
-  if (error) return <p className="loading">{error}</p>;
 
   return !books || books.length === 0 ? (
     <h2 className={styles.books__empty}>Список книг пуст</h2>
