@@ -8,17 +8,21 @@ import {
 } from "../../../../schemas/registerSchema";
 import { useForm } from "react-hook-form";
 import styles from "./RegisterForm.module.scss";
+import { useAuth } from "hooks/useAuth";
 
 const RegisterForm: React.FC<TToggle> = ({ toggle }) => {
   const [show, setShow] = useState<string>("password");
+  const { register } = useAuth();
 
   const {
-    register,
+    register: registerForm,
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormData>({ resolver: zodResolver(registerSchema) });
 
-  const onSubmit = async (data: RegisterFormData) => {};
+  const hanleRegister = async (data: RegisterFormData) => {
+    await register(data);
+  };
 
   return (
     <motion.div
@@ -32,7 +36,7 @@ const RegisterForm: React.FC<TToggle> = ({ toggle }) => {
       <form
         action="submit"
         className={styles.register}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(hanleRegister)}
       >
         <h1 className={styles.register__greeting}>Добро пожаловать!</h1>
 
@@ -47,7 +51,7 @@ const RegisterForm: React.FC<TToggle> = ({ toggle }) => {
           type="text"
           placeholder="Name"
           className={styles.register__input}
-          {...register("name")}
+          {...registerForm("name")}
         />
         {errors.name && <p className="error">{errors.name.message}</p>}
 
@@ -62,7 +66,7 @@ const RegisterForm: React.FC<TToggle> = ({ toggle }) => {
           type="text"
           placeholder="Email"
           className={styles.register__input}
-          {...register("email")}
+          {...registerForm("email")}
         />
         {errors.email && <p className="error">{errors.email.message}</p>}
 
@@ -77,7 +81,7 @@ const RegisterForm: React.FC<TToggle> = ({ toggle }) => {
           type={show}
           placeholder="Password"
           className={styles.register__input}
-          {...register("password")}
+          {...registerForm("password")}
         />
         {errors.password && <p className="error">{errors.password.message}</p>}
         <label
@@ -91,7 +95,7 @@ const RegisterForm: React.FC<TToggle> = ({ toggle }) => {
           type={show}
           placeholder="Confirm Password"
           className={styles.register__input}
-          {...register("confirmPassword")}
+          {...registerForm("confirmPassword")}
         />
         {errors.confirmPassword && (
           <p className="error">{errors.confirmPassword.message}</p>
@@ -109,7 +113,7 @@ const RegisterForm: React.FC<TToggle> = ({ toggle }) => {
             }
           />
         </div>
-        <button className={styles.register__btn} type="submit">
+        <button className={styles.register__btn} type="submit" onClick={toggle}>
           Зарегистрироваться
         </button>
         <p className={styles.register__toregister} onClick={toggle}>

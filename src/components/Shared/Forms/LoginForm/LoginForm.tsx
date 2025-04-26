@@ -3,16 +3,14 @@ import { TToggle } from "../../../../types/toggleFormType";
 import { motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, loginFormData } from "../../../../schemas/loginSchema";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../../store/useAuthStore";
 import styles from "./LoginForm.module.scss";
 import { useAuth } from "hooks/useAuth";
-import { ILoginType } from "constants/authRoutes";
 
 const LoginForm: React.FC<TToggle> = ({ toggle }) => {
   const [show, setShow] = useState<string>("password");
-  const { setUser } = useAuthStore();
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -23,7 +21,8 @@ const LoginForm: React.FC<TToggle> = ({ toggle }) => {
   } = useForm<loginFormData>({ resolver: zodResolver(loginSchema) });
 
   const handleLogin = async (data: loginFormData) => {
-    const responce = await login(data);
+    await login(data);
+    navigate("/");
   };
 
   return (
