@@ -1,6 +1,6 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
-import { Roles } from "../constants/role";
+import { Roles } from "../constants/roles";
 import { ReactNode, ReactElement } from "react";
 import { useEffect } from "react";
 

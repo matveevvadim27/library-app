@@ -3,5 +3,3 @@ export enum Roles {
   LIBRARIAN = 2,
   ADMIN = 1,
 }
-
-export const token = () => localStorage.getItem("token");

@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, loginFormData } from "../../../../schemas/loginSchema";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../../../store/useAuthStore";
 import styles from "./LoginForm.module.scss";
 import { useAuth } from "hooks/useAuth";
 

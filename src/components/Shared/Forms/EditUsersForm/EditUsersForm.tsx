@@ -3,6 +3,7 @@ import { IUser } from "../../../../store/useAuthStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { editSchema, editFormData } from "../../../../schemas/editSchema";
+import { useUsers } from "hooks/useUsers";
 
 interface IEditUserFormProps {
   user: IUser;
@@ -10,6 +11,8 @@ interface IEditUserFormProps {
 }
 
 const EditUser: React.FC<IEditUserFormProps> = ({ user, onClose }) => {
+  const { putChangeUser } = useUsers();
+
   const {
     register,
     handleSubmit,
@@ -18,17 +21,31 @@ const EditUser: React.FC<IEditUserFormProps> = ({ user, onClose }) => {
     resolver: zodResolver(editSchema),
     defaultValues: user,
   });
-  const onSubmit = async (data: editFormData) => {};
+  const handleEditUser = async (data: editFormData) => {
+    await putChangeUser(data);
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.change}>
+    <form onSubmit={handleSubmit(handleEditUser)} className={styles.change}>
       <label className={styles.change__label}>
-        Логин:
-        <input className={styles.change__input} type="text" disabled />
+        Имя:
+        <input
+          className={styles.change__input}
+          type="text"
+          placeholder="Имя"
+          value={user.name}
+          disabled
+        />
       </label>
       <label className={styles.change__label}>
         Email:
-        <input className={styles.change__input} type="text" disabled />
+        <input
+          className={styles.change__input}
+          type="text"
+          placeholder="Пароль"
+          value={user.email}
+          disabled
+        />
       </label>
       <label className={styles.change__label}>
         Пароль:

@@ -1,11 +1,11 @@
 import { AddFormData, addSchema } from "../../../../schemas/addSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuthStore } from "../../../../store/useAuthStore";
 import styles from "./AddUsers.module.scss";
+import { useUsers } from "../../../../hooks/useUsers";
 
 export default function AddUsers() {
-  const { setUsers } = useAuthStore();
+  const { postUser } = useUsers();
 
   const {
     register: registerUser,
@@ -15,10 +15,12 @@ export default function AddUsers() {
     resolver: zodResolver(addSchema),
   });
 
-  const onSubmit = async (data: AddFormData) => {};
+  const handleAddUser = async (data: AddFormData) => {
+    await postUser(data);
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.add}>
+    <form onSubmit={handleSubmit(handleAddUser)} className={styles.add}>
       <h3>Добавить пользователя:</h3>
       <label className={styles.add__label}>
         Имя:
@@ -49,6 +51,18 @@ export default function AddUsers() {
           placeholder="Пароль"
           {...registerUser("password")}
         />
+        {errors.password && <p className="error">{errors.password.message}</p>}
+      </label>
+      <label className={styles.add__label}>
+        Роль:
+        <select
+          className={styles.add__input}
+          {...registerUser("role", { valueAsNumber: true })}
+        >
+          <option value={1}>Администратор</option>
+          <option value={2}>Библиотекарь</option>
+          <option value={3}>Пользователь</option>
+        </select>
         {errors.password && <p className="error">{errors.password.message}</p>}
       </label>
 

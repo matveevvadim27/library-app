@@ -1,28 +1,21 @@
 import { useState, useEffect } from "react";
 import { IUser, useAuthStore } from "../../../../store/useAuthStore";
-
 import styles from "./UsersList.module.scss";
 import EditUsers from "components/Shared/Forms/EditUsersForm/EditUsersForm";
+import { useUsers } from "hooks/useUsers";
 
 export default function UsersList() {
   const [editingUser, setEditingUser] = useState<IUser | null>(null);
   const { users, setUsers } = useAuthStore();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string>("");
+  const { getUsers, deleteUser } = useUsers();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      setLoading(true);
-      setError("");
-    };
-
-    fetchUsers();
+    getUsers();
   }, [setUsers]);
 
-  if (loading) return <p className="loading">Загрузка пользователей...</p>;
-  if (error) return <p className="loading">{error}</p>;
-
-  const handleDeleteUser = async (user: number) => {};
+  const handleDeleteUser = async (user: number) => {
+    await deleteUser(user);
+  };
 
   return (
     <div className={styles.users}>
@@ -32,7 +25,7 @@ export default function UsersList() {
       )}
       <ul className={styles.users__list}>
         {users.map((user) => (
-          <li key={user.name} className={styles.users__item}>
+          <li key={user.id} className={styles.users__item}>
             <span className={styles.users__data}>
               {user.name} ({user.role})
             </span>
