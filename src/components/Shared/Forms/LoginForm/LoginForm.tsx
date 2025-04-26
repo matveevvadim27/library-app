@@ -3,15 +3,18 @@ import { TToggle } from "../../../../types/toggleFormType";
 import { motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, loginFormData } from "../../../../schemas/loginSchema";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../../../store/authStore";
+import { useAuthStore } from "../../../../store/useAuthStore";
 import styles from "./LoginForm.module.scss";
+import { useAuth } from "hooks/useAuth";
+import { ILoginType } from "constants/authRoutes";
 
 const LoginForm: React.FC<TToggle> = ({ toggle }) => {
   const [show, setShow] = useState<string>("password");
   const { setUser } = useAuthStore();
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const {
     register,
@@ -19,7 +22,9 @@ const LoginForm: React.FC<TToggle> = ({ toggle }) => {
     formState: { errors },
   } = useForm<loginFormData>({ resolver: zodResolver(loginSchema) });
 
-  const onSubmit = async (data: loginFormData) => {};
+  const handleLogin = async (data: loginFormData) => {
+    const responce = await login(data);
+  };
 
   return (
     <motion.div
@@ -33,7 +38,7 @@ const LoginForm: React.FC<TToggle> = ({ toggle }) => {
       <form
         action="submit"
         className={styles.login}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleLogin)}
       >
         <h1 className={styles.login__greeting}>С возвращением!</h1>
         <label

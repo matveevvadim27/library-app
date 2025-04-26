@@ -3,7 +3,7 @@ import { useState } from "react";
 import Navbar from "../../Shared/Bars/Navbar/Navbar";
 import Burger from "../../UI/Buttons/BurgerButton/Burger";
 import logo from "../../../assets/icons/logo.png";
-import { useAuthStore } from "store/authStore";
+import { useAuthStore } from "store/useAuthStore";
 import styles from "./Header.module.scss";
 import LoginButton from "../../UI/Buttons/LoginButton/LoginButton";
 

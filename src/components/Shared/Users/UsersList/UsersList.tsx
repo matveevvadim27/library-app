@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { IUser, useAuthStore } from "../../../../store/authStore";
+import { IUser, useAuthStore } from "../../../../store/useAuthStore";
 
 import styles from "./UsersList.module.scss";
 import EditUsers from "components/Shared/Forms/EditUsersForm/EditUsersForm";

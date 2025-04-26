@@ -1,5 +1,5 @@
 import api from "api/axios";
-import getToken from "utils/token";
+import getToken from "utils/getToken";
 
 api.interceptors.request.use(
   (config) => {

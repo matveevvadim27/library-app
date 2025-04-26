@@ -9,13 +9,13 @@ export interface IRegisterType {
     id: number;
     name: string;
     email: string;
-    role: number | null;
+    role: number;
   };
 }
 
 const AUTH_ROUTES = {
-  LOGIN: `${API_URL}/login/`,
-  REGISTER: `${API_URL}/register/`,
+  LOGIN: `${API_URL}/login`,
+  REGISTER: `${API_URL}/register`,
 };
 
 export default AUTH_ROUTES;

@@ -1,10 +1,10 @@
 import API_URL from "./api";
 
-interface IUser {
+export interface IUser {
   id: number;
   name: string;
   email: string;
-  role: number | null;
+  role: number;
 }
 
 export interface IGetMe {

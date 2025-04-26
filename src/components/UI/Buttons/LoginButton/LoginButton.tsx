@@ -1,10 +1,10 @@
-import { useAuthStore } from "../../../../store/authStore";
+import { useAuthStore } from "../../../../store/useAuthStore";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginButton.module.scss";
 
 export default function LoginButton() {
-  const { currentUser, logout } = useAuthStore();
+  const { user, logout } = useAuthStore();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -12,13 +12,13 @@ export default function LoginButton() {
     navigate("/auth");
   };
 
-  return currentUser === null ? (
+  return user === null ? (
     <Link to="/auth" className={styles.login}>
       Войти
     </Link>
   ) : (
     <button className={styles.login} onClick={handleLogout}>
-      {currentUser ? currentUser.name : "Загрузка..."}
+      {user ? user.name : "Загрузка..."}
     </button>
   );
 }

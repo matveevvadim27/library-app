@@ -1,5 +1,5 @@
 import { Navigate, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/authStore";
+import { useAuthStore } from "../store/useAuthStore";
 import { Roles } from "../constants/role";
 import { ReactNode, ReactElement } from "react";
 import { useEffect } from "react";
@@ -13,16 +13,16 @@ const ProtectRoute = ({
   children,
   allowedRoles,
 }: ProtectedRouteProps): ReactElement | null => {
-  const { currentUser } = useAuthStore();
+  const { user } = useAuthStore();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!user) {
       navigate("/auth");
     }
-  }, [currentUser, navigate]);
+  }, [user, navigate]);
 
-  if (currentUser && !allowedRoles.includes(currentUser!.role)) {
+  if (user && !allowedRoles.includes(user!.role!)) {
     return <Navigate to="/" />;
   }
 

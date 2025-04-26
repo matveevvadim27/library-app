@@ -4,12 +4,12 @@ export interface IUser {
   id: number;
   name: string;
   email: string;
-  password: string;
-  role: number;
+  password?: string;
+  role?: number;
 }
 
 interface IUserState {
-  currentUser: IUser | null;
+  user: IUser | null;
   users: IUser[];
   isLoading: boolean;
   token: string | null;
@@ -21,7 +21,7 @@ interface IUserState {
 }
 
 export const useAuthStore = create<IUserState>((set) => ({
-  currentUser: null,
+  user: null,
 
   users: [],
 
@@ -38,12 +38,12 @@ export const useAuthStore = create<IUserState>((set) => ({
       users: typeof users === "function" ? users(state.users) : users,
     })),
 
-  setUser: (user) => set({ currentUser: user }),
+  setUser: (user) => set({ user: user }),
 
   setLoading: (isLoading) => set({ isLoading }),
 
   logout: () => {
     localStorage.removeItem("token");
-    set({ currentUser: null });
+    set({ user: null });
   },
 }));

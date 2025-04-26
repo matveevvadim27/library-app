@@ -1,5 +1,5 @@
 import styles from "./EditUsers.module.scss";
-import { IUser } from "../../../../store/authStore";
+import { IUser } from "../../../../store/useAuthStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { editSchema, editFormData } from "../../../../schemas/editSchema";

@@ -1,5 +1,5 @@
 import { BookFormData } from "../../../../schemas/bookSchema";
-import { useAuthStore } from "store/authStore";
+import { useAuthStore } from "store/useAuthStore";
 import styles from "./BookCard.module.scss";
 import { useBookStore } from "store/booksStore";
 
@@ -8,7 +8,7 @@ interface BookCardProps {
 }
 
 export default function BookCard({ book }: BookCardProps) {
-  const { currentUser } = useAuthStore();
+  const { user } = useAuthStore();
   const { books, setBooks } = useBookStore();
 
   const handleDeleteBook = async (book: number) => {};
@@ -22,7 +22,7 @@ export default function BookCard({ book }: BookCardProps) {
         <p className="card__text">
           Описание: {book.description || "Нет описания"}
         </p>
-        {currentUser!.role <= 2 && (
+        {user!.role! <= 2 && (
           <div className={styles.card__actions}>
             <button
               className={styles.card__delete}
