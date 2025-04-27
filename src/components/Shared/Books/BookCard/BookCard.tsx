@@ -57,7 +57,7 @@ export default function BookCard({ book }: IBookCardProps) {
         <p className="card__text">
           Описание: {book.description || "Нет описания"}
         </p>
-        {user!.role! == 3 && (
+        {user && user!.role! == 3 && (
           <button
             className={styles.card__reservation}
             onClick={() => handleRequestBook(book, user!.id, user!.name)}
@@ -65,7 +65,7 @@ export default function BookCard({ book }: IBookCardProps) {
             Запросить книгу
           </button>
         )}
-        {user!.role! <= 2 && (
+        {user && user!.role! <= 2 && (
           <div className={styles.card__actions}>
             {book.reserved_at !== null ? (
               <button
