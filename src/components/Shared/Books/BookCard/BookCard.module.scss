@@ -12,9 +12,6 @@
     align-items: center;
   }
 
-  &__image {
-    max-width: rem(150);
-  }
   &__content {
     display: flex;
     flex-direction: column;
@@ -33,8 +30,15 @@
   }
 
   &__reservation {
+    max-width: rem(200);
     padding: rem(5) rem(10);
     border-radius: rem(5);
+    border: none;
+    outline: rem(1) solid var(--color-border);
+    &:hover {
+      border: none;
+      outline: rem(1) solid var(--color-accent);
+    }
   }
 
   &__delete {

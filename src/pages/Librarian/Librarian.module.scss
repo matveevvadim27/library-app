@@ -11,4 +11,16 @@
   &__title {
     text-align: center;
   }
+
+  &__btn {
+    align-self: flex-end;
+    padding: rem(5) rem(10);
+    border-radius: rem(5);
+    border: none;
+    outline: rem(1) solid var(--color-border);
+    &:hover {
+      outline: rem(2) solid var(--color-accent);
+      border: none;
+    }
+  }
 }

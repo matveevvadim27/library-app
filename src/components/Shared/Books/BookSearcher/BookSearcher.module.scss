@@ -1,0 +1,63 @@
+@use "../../../../styles/helpers/" as *;
+
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+
+  &__opening {
+    align-self: flex-end;
+    padding: rem(5);
+    outline: rem(1) solid var(--color-border);
+    border-radius: rem(5);
+    border: none;
+    &:hover {
+      outline: rem(1) solid var(--color-accent);
+    }
+  }
+
+  &__form {
+    padding: rem(20);
+    border: rem(1) solid var(--color-accent);
+    margin-top: rem(20);
+    border-radius: rem(10);
+  }
+
+  &__title {
+    text-align: center;
+    margin-bottom: rem(20);
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    outline: rem(1) solid var(--color-border);
+    border: none;
+    border-radius: rem(5);
+    padding: rem(5);
+    &:focus {
+      outline: rem(2) solid var(--color-accent);
+      border: none;
+    }
+  }
+
+  &__btn {
+    padding: rem(5) rem(10);
+    border-radius: rem(5);
+    border: none;
+    outline: rem(1) solid var(--color-border);
+    &:hover {
+      outline: rem(2) solid var(--color-accent);
+      border: none;
+    }
+  }
+}

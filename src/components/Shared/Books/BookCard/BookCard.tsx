@@ -3,6 +3,7 @@ import styles from "./BookCard.module.scss";
 import { useBookStore } from "store/useBooksStore";
 import { useBooks } from "hooks/useBooks";
 import { IBook, IBookBase } from "constants/booksRoutes";
+import { toast } from "react-toastify";
 
 interface IBookCardProps {
   book: IBook;
@@ -11,7 +12,7 @@ interface IBookCardProps {
 export default function BookCard({ book }: IBookCardProps) {
   const { user } = useAuthStore();
   const { deleteBook, putReserveBook, putFreeBook } = useBooks();
-  const { requstedBooks, setRequstedBooks } = useBookStore();
+  const { setRequstedBooks } = useBookStore();
 
   const handleDeleteBook = async (id: number) => {
     deleteBook(id);
@@ -37,6 +38,7 @@ export default function BookCard({ book }: IBookCardProps) {
       userName,
     };
     setRequstedBooks([requstedBookData]);
+    toast.success("Запрос на выдачу книги отправлен");
   };
 
   return (

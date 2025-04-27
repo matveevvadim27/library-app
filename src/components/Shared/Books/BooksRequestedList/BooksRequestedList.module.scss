@@ -1,1 +1,44 @@
 @use "../../../../styles/helpers/" as *;
+
+.requested {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+
+  &__title {
+    text-align: center;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: rem(20) rem(15);
+    border: rem(1) solid var(--color-border);
+    border-radius: rem(10);
+    gap: rem(10);
+
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__btn {
+    max-width: rem(200);
+    padding: rem(5);
+    border: none;
+    outline: rem(1) solid var(--color-border);
+    border-radius: rem(5);
+    &:hover {
+      outline: rem(1) solid var(--color-accent);
+    }
+  }
+}

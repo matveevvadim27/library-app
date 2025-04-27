@@ -21,6 +21,7 @@ interface IBooksStore {
       | IRequstedBooks[]
       | ((prev: IRequstedBooks[]) => IRequstedBooks[])
   ) => void;
+  deleteRequestedBook: (id: number) => void;
 }
 
 export const useBookStore = create<IBooksStore>((set) => ({
@@ -64,5 +65,9 @@ export const useBookStore = create<IBooksStore>((set) => ({
         typeof requstedBooks === "function"
           ? requstedBooks(state.requstedBooks)
           : requstedBooks,
+    })),
+  deleteRequestedBook: (id) =>
+    set((state) => ({
+      requstedBooks: state.requstedBooks.filter((book) => book.id !== id),
     })),
 }));

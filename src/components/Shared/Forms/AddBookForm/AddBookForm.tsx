@@ -20,6 +20,7 @@ const AddBookForm: React.FC = () => {
   };
   return (
     <form className={styles.edit__form} onSubmit={handleSubmit(handleAddBook)}>
+      <h2 className={styles.edit__title}>Добавить книгу</h2>
       <label className={styles.edit__label}>
         Название:
         <input {...register("name")} className={styles.edit__input} />

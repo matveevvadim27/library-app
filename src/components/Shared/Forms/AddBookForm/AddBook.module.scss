@@ -11,6 +11,10 @@
     gap: rem(20);
   }
 
+  &__title {
+    text-align: center;
+  }
+
   &__label {
     @include fluid-text(20, 16);
     font-weight: var(--fw-600);

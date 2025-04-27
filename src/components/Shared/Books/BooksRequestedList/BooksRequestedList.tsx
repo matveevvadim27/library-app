@@ -4,7 +4,7 @@ import { useBooks } from "hooks/useBooks";
 import { useAuthStore } from "store/useAuthStore";
 
 export default function BooksRequestedList() {
-  const { books, issuedBooks, requstedBooks } = useBookStore();
+  const { issuedBooks, requstedBooks, deleteRequestedBook } = useBookStore();
   const { putTakeBook, putReturnBook } = useBooks();
   const { user } = useAuthStore();
 
@@ -18,51 +18,64 @@ export default function BooksRequestedList() {
 
   return (
     <>
-      <ul className={styles.requested}>
-        {requstedBooks.map((book) => (
-          <li key={book.id}>
-            <div className={styles.requsted__info}>
-              <h3 className="card__text">{book.name}</h3>
-              <p className={styles.requsted_name}>
-                Книгу запросил: {book.userName}
+      {requstedBooks.length == 0 ? (
+        <p>Список запрошенных книг пуст</p>
+      ) : (
+        <ul className={styles.requested}>
+          <h2 className={styles.requested__title}>Запрошенные книги</h2>
+          {requstedBooks.map((book) => (
+            <li key={book.id} className={styles.requested__item}>
+              <div className={styles.requested__info}>
+                <h3 className="card__text">{book.name}</h3>
+                <p className={styles.requsted_name}>
+                  Книгу запросил: {book.userName}
+                </p>
+              </div>
+              <p className="card__text">Автор: {book.author}</p>
+              <p className="card__text">Издатель: {book.publisher}</p>
+              <p className="card__text">Жанр: {book.genre}</p>
+              <p className="card__text">
+                Описание: {book.description || "Нет описания"}
               </p>
-            </div>
-            <p className="card__text">Автор: {book.author}</p>
-            <p className="card__text">Издатель: {book.publisher}</p>
-            <p className="card__text">Жанр: {book.genre}</p>
-            <p className="card__text">
-              Описание: {book.description || "Нет описания"}
-            </p>
-            <button
-              className={styles.requsted__btn}
-              onClick={() => handleTakeBook(book.slug, user!.id)}
-            >
-              Выдать книгу
-            </button>
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {issuedBooks.map((book) => (
-          <li key={book.id}>
-            <div className={styles.requsted__info}>
-              <h3 className="card__text">{book.name}</h3>
-            </div>
-            <p className="card__text">Автор: {book.author}</p>
-            <p className="card__text">Издатель: {book.publisher}</p>
-            <p className="card__text">Жанр: {book.genre}</p>
-            <p className="card__text">
-              Описание: {book.description || "Нет описания"}
-            </p>
-            <button
-              className={styles.requsted__btn}
-              onClick={() => handleReturnBook(book.slug)}
-            >
-              Книга возвращена
-            </button>
-          </li>
-        ))}
-      </ul>
+              <button
+                className={styles.requested__btn}
+                onClick={() => {
+                  handleTakeBook(book.slug, user!.id);
+                  deleteRequestedBook(book.id);
+                }}
+              >
+                Выдать книгу
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      {issuedBooks.length == 0 ? (
+        <p>Список книг на возврат пуст</p>
+      ) : (
+        <ul className={styles.requested}>
+          <h2 className={styles.requested__title}>Книги на возврат</h2>
+          {issuedBooks.map((book) => (
+            <li key={book.id} className={styles.requested__item}>
+              <div className={styles.requested__info}>
+                <h3 className="card__text">{book.name}</h3>
+              </div>
+              <p className="card__text">Автор: {book.author}</p>
+              <p className="card__text">Издатель: {book.publisher}</p>
+              <p className="card__text">Жанр: {book.genre}</p>
+              <p className="card__text">
+                Описание: {book.description || "Нет описания"}
+              </p>
+              <button
+                className={styles.requested__btn}
+                onClick={() => handleReturnBook(book.slug)}
+              >
+                Книга возвращена
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 }
