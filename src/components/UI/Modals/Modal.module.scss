@@ -12,6 +12,11 @@
   align-items: center;
   padding: rem(20);
 
+  @include mobile {
+    width: 100vw;
+    height: 100vh;
+  }
+
   &__content {
     background: white;
     padding: rem(40);

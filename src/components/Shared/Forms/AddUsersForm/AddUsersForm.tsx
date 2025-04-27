@@ -21,7 +21,7 @@ export default function AddUsers() {
 
   return (
     <form onSubmit={handleSubmit(handleAddUser)} className={styles.add}>
-      <h3>Добавить пользователя:</h3>
+      <h3 className={styles.add__title}>Добавить пользователя:</h3>
       <label className={styles.add__label}>
         Имя:
         <input

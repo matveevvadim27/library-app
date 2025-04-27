@@ -1,12 +1,10 @@
 import { useForm } from "react-hook-form";
-import { useBookStore } from "../../../../store/useBooksStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { bookFormData, bookSchema } from "../../../../schemas/bookSchema";
 import styles from "./AddBook.module.scss";
 import { useBooks } from "hooks/useBooks";
 
 const AddBookForm: React.FC = () => {
-  const { setBooks } = useBookStore();
   const { postBook } = useBooks();
 
   const {

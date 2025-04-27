@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 export const apiErrors = (error: any, customMessage?: string) => {
   if (error.response) {
-    const { status } = error.response.status;
+    const status = error.response.status;
 
     switch (status) {
       case 400:
