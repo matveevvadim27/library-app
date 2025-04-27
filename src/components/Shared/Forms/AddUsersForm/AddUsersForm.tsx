@@ -1,4 +1,4 @@
-import { AddFormData, addSchema } from "../../../../schemas/addSchema";
+import { AddFormData, addSchema } from "../../../../schemas/addUserSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import styles from "./AddUsers.module.scss";

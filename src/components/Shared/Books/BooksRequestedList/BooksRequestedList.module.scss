@@ -17,11 +17,6 @@
     border: rem(1) solid var(--color-border);
     border-radius: rem(10);
     gap: rem(10);
-
-    @include mobile {
-      flex-direction: column;
-      align-items: center;
-    }
   }
 
   &__info {
@@ -29,6 +24,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__text {
+    text-align: left;
   }
 
   &__btn {

@@ -5,6 +5,10 @@
   flex-direction: column;
   gap: rem(20);
 
+  &__title {
+    text-align: center;
+  }
+
   &__list {
     display: flex;
     flex-direction: column;
@@ -27,6 +31,10 @@
     @include fluid-text(20, 18);
     font-weight: var(--fw-600);
     margin-right: auto;
+
+    @include mobile {
+      margin-right: 0;
+    }
   }
 
   &__delete {

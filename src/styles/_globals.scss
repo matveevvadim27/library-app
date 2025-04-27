@@ -30,7 +30,7 @@ h1,
 
 h2,
 .h2 {
-  @include fluid-text(36, 30);
+  @include fluid-text(36, 28);
   font-weight: var(--fw-600);
   line-height: var(--lh-12);
 }

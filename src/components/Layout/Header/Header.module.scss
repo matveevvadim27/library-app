@@ -18,7 +18,7 @@
     gap: rem(10);
 
     &:hover {
-      color: var(--color-links);
+      color: var(--color-accent);
     }
   }
 
@@ -43,37 +43,6 @@
         @include visually-hidden;
         translate: 100%;
       }
-    }
-  }
-
-  &__login {
-    @include fluid-text(18, 16);
-    padding: rem(10) rem(20);
-    background-color: var(--color-login);
-    color: var(--color-white);
-    border-radius: rem(5);
-
-    &:hover {
-      background-color: var(--color-white);
-      color: var(--color-login);
-      outline: rem(1) solid var(--color-login);
-      transform: scale(0.85);
-      transition-duration: var(--td);
-    }
-  }
-  &__button {
-    @include fluid-text(18, 16);
-    border: none;
-    padding: rem(10) rem(20);
-    background-color: var(--color-login);
-    color: var(--color-white);
-    border-radius: rem(5);
-
-    &:hover {
-      background-color: var(--color-white);
-      color: var(--color-login);
-      outline: rem(1) solid var(--color-login);
-      transform: scale(0.85);
     }
   }
 }

@@ -26,15 +26,17 @@ export default function BooksRequestedList() {
           {requstedBooks.map((book) => (
             <li key={book.id} className={styles.requested__item}>
               <div className={styles.requested__info}>
-                <h3 className="card__text">{book.name}</h3>
+                <h3 className={styles.requested__text}>{book.name}</h3>
                 <p className={styles.requsted_name}>
                   Книгу запросил: {book.userName}
                 </p>
               </div>
-              <p className="card__text">Автор: {book.author}</p>
-              <p className="card__text">Издатель: {book.publisher}</p>
-              <p className="card__text">Жанр: {book.genre}</p>
-              <p className="card__text">
+              <p className={styles.requested__text}>Автор: {book.author}</p>
+              <p className={styles.requested__text}>
+                Издатель: {book.publisher}
+              </p>
+              <p className={styles.requested__text}>Жанр: {book.genre}</p>
+              <p className={styles.requested__text}>
                 Описание: {book.description || "Нет описания"}
               </p>
               <button
@@ -58,12 +60,14 @@ export default function BooksRequestedList() {
           {issuedBooks.map((book) => (
             <li key={book.id} className={styles.requested__item}>
               <div className={styles.requested__info}>
-                <h3 className="card__text">{book.name}</h3>
+                <h3 className={styles.requested__text}>{book.name}</h3>
               </div>
-              <p className="card__text">Автор: {book.author}</p>
-              <p className="card__text">Издатель: {book.publisher}</p>
-              <p className="card__text">Жанр: {book.genre}</p>
-              <p className="card__text">
+              <p className={styles.requested__text}>Автор: {book.author}</p>
+              <p className={styles.requested__text}>
+                Издатель: {book.publisher}
+              </p>
+              <p className={styles.requested__text}>Жанр: {book.genre}</p>
+              <p className={styles.requested__text}>
                 Описание: {book.description || "Нет описания"}
               </p>
               <button

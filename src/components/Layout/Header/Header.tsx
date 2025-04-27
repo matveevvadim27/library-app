@@ -1,21 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "../../Shared/Bars/Navbar/Navbar";
 import Burger from "../../UI/Buttons/BurgerButton/Burger";
 import logo from "../../../assets/icons/logo.png";
-import { useAuthStore } from "store/useAuthStore";
 import styles from "./Header.module.scss";
 import LoginButton from "../../UI/Buttons/LoginButton/LoginButton";
 
 export default function Header() {
-  const { logout } = useAuthStore();
   const [isActive, setIsActive] = useState<boolean>(false);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-  };
 
   const closeOverlay = () => {
     setIsActive(false);

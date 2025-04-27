@@ -9,6 +9,11 @@
     display: flex;
     flex-direction: column;
     gap: rem(20);
+
+    @include mobile {
+      padding: rem(10);
+      gap: rem(10);
+    }
   }
 
   &__title {
@@ -43,5 +48,10 @@
     background-color: var(--color-accent);
     border: none;
     border-radius: rem(10);
+
+    @include mobile {
+      padding: rem(10);
+      gap: rem(10);
+    }
   }
 }

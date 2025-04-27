@@ -11,6 +11,10 @@
   border-radius: rem(30);
   box-shadow: 0px 0px 6px 0px var(--color-border);
 
+  @include mobile {
+    padding: rem(20);
+  }
+
   &__greeting {
     text-align: center;
   }

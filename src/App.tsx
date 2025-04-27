@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { initializeUser } from "utils/initializeUser";
 import { useAuthStore } from "store/useAuthStore";
 import Spinner from "components/UI/Spinner/Spinner";
-import Modal from "components/UI/Modals/Modal";
 
 export default function App() {
   const { isLoading } = useAuthStore();

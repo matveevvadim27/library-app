@@ -2,7 +2,7 @@ import styles from "./EditUsers.module.scss";
 import { IUser } from "../../../../store/useAuthStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { editSchema, editFormData } from "../../../../schemas/editSchema";
+import { editSchema, editFormData } from "../../../../schemas/editUserSchema";
 import { useUsers } from "hooks/useUsers";
 
 interface IEditUserFormProps {
@@ -27,6 +27,7 @@ const EditUser: React.FC<IEditUserFormProps> = ({ user, onClose }) => {
 
   return (
     <form onSubmit={handleSubmit(handleEditUser)} className={styles.change}>
+      <h2 className={styles.change__title}>Редактирование пользователя</h2>
       <label className={styles.change__label}>
         Имя:
         <input

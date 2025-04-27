@@ -2,10 +2,10 @@ import api from "api/axios";
 import USERS_ROUTES from "constants/usersRoutes";
 import { apiErrors } from "utils/apiErrors";
 import { IGetMe, IGetUsers } from "constants/usersRoutes";
-import { AddFormData } from "schemas/addSchema";
+import { AddFormData } from "schemas/addUserSchema";
 import { toast } from "react-toastify";
 import { useAuthStore } from "store/useAuthStore";
-import { editFormData } from "schemas/editSchema";
+import { editFormData } from "schemas/editUserSchema";
 
 export const useUsers = () => {
   const { setUsers } = useAuthStore();

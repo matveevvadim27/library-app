@@ -6,22 +6,21 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--color-modal);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: rem(20);
 
-  @include mobile {
-    width: 100vw;
-    height: 100vh;
-  }
-
   &__content {
-    background: white;
+    background: var(--color-white);
     padding: rem(40);
     border-radius: rem(8);
     position: relative;
+
+    @include mobile {
+      padding: rem(20) rem(30);
+    }
   }
 
   &__btn {
