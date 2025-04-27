@@ -37,10 +37,16 @@ export const useBookStore = create<IBooksStore>((set) => ({
   setBooks: (books) =>
     set((state) => {
       const newBooks = typeof books === "function" ? books(state.books) : books;
-      const issuedBooks = newBooks.filter((book) => book.take_at); // фильтруем по take_at
+      const issuedBooks = newBooks.filter((book) => book.take_at);
+
+      const validBookIds = newBooks.map((book) => book.id);
+      const updatedRequestedBooks = state.requstedBooks.filter((book) =>
+        validBookIds.includes(book.id)
+      );
       return {
         books: newBooks,
         issuedBooks,
+        requstedBooks: updatedRequestedBooks,
       };
     }),
 
