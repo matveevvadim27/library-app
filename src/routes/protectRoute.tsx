@@ -1,8 +1,8 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 import { Roles } from "../constants/roles";
 import { ReactNode, ReactElement } from "react";
-import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -14,16 +14,14 @@ const ProtectRoute = ({
   allowedRoles,
 }: ProtectedRouteProps): ReactElement | null => {
   const { user } = useAuthStore();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/auth");
-    }
-  }, [user, navigate]);
+  if (!user) {
+    return <Navigate to="/auth" replace />;
+  }
 
-  if (user && !allowedRoles.includes(user!.role!)) {
-    return <Navigate to="/" />;
+  if (!user.role || !allowedRoles.includes(user.role)) {
+    toast.error("У вас недостаточно прав!");
+    return <Navigate to="/" replace />;
   }
 
   return children as ReactElement;

@@ -4,7 +4,7 @@ import Admin from "../pages/Admin/Admin";
 import Librarian from "../pages/Librarian/Librarian";
 import Library from "../pages/Library/Library";
 import Auth from "../pages/Auth/Auth";
-import ProtectRoute from "../utils/protectRoute";
+import ProtectRoute from "./protectRoute";
 import { Roles } from "../constants/roles";
 
 export default function AppRoutes() {
