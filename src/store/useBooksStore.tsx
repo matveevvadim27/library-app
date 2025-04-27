@@ -17,7 +17,7 @@ interface IBooksStore {
     searchedBooks: IBook[] | ((prev: IBook[]) => IBook[])
   ) => void;
   setRequstedBooks: (
-    searchedBooks:
+    requstedBooks:
       | IRequstedBooks[]
       | ((prev: IRequstedBooks[]) => IRequstedBooks[])
   ) => void;
@@ -60,12 +60,16 @@ export const useBookStore = create<IBooksStore>((set) => ({
     })),
 
   setRequstedBooks: (requstedBooks) =>
-    set((state) => ({
-      requstedBooks:
+    set((state) => {
+      const newRequstedBooks =
         typeof requstedBooks === "function"
           ? requstedBooks(state.requstedBooks)
-          : requstedBooks,
-    })),
+          : requstedBooks;
+
+      return {
+        requstedBooks: [...state.requstedBooks, ...newRequstedBooks],
+      };
+    }),
   deleteRequestedBook: (id) =>
     set((state) => ({
       requstedBooks: state.requstedBooks.filter((book) => book.id !== id),
